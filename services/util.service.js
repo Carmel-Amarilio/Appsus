@@ -1,5 +1,4 @@
 export const utilService = {
-
   makeId,
   makeLorem,
   getRandomIntInclusive,
@@ -99,7 +98,6 @@ function getDayName(date, locale) {
 }
 
 function getMonthName(date) {
-
   const monthNames = [
     "January",
     "February",
@@ -123,4 +121,3 @@ function getRandomDate(startDate, endDate) {
   const randomDate = new Date(startDate.getTime() + randomTime);
   return randomDate.toISOString().slice(0, 10);
 }
-
