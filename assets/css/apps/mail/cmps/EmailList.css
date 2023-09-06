@@ -30,8 +30,6 @@
 }
 
 .email-list .star-btn{
-    background-color: rgba(255, 255, 255, 0);
-    border: 0;
     padding: 10px;
 }
 .email-list .starred{
