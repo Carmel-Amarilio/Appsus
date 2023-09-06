@@ -1,4 +1,5 @@
 import { emailService } from '../services/email.service.js'
+import { EmailHeader } from '../cmps/EmailHeader.jsx'
 import { EmailsFilter } from '../cmps/EmailsFilter.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
 
@@ -15,9 +16,9 @@ export function EmailIndex() {
     return (
         <section className="email-index">
             {console.log(emails)}
+            <EmailHeader />
             <EmailsFilter />
             <EmailList emails={emails} />
-            <div>mail app</div>
         </section>
     )
 }

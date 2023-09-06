@@ -1,0 +1,39 @@
+.email-header >*{
+    margin-inline: 30px;
+}
+
+.email-header button {
+    background-color: rgba(137, 43, 226, 0);
+    border: 0;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.email-header button:hover{
+    background-color: var(--mail-bg-color-hover);
+}
+
+.email-header .logo{
+    cursor: pointer;
+    height: 30px;
+}
+
+.search-sec{
+    background-color:rgb(234,241,251) ;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.search-sec input{
+    border: 0;
+    background-color:rgb(234,241,251) ;
+}
+
+.search-sec input:focus {
+    outline: none; 
+    border: none;  
+  }
+
+
+  

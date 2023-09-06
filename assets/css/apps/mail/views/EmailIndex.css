@@ -1,1 +1,6 @@
- /* mail index  */
+.email-index{
+    position: absolute;
+    background-color: var(--email-page-bg-color);
+    height: 100%;
+    width: 100%;
+}

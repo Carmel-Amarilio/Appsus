@@ -32,7 +32,7 @@ function makeId(length = 6) {
 
 function makeLorem(size = 100) {
   var words = [
-    "The sky",
+    "sky",
     "above",
     "the port",
     "was",

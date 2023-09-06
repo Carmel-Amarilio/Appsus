@@ -53,6 +53,7 @@ function getEmptyEmail() {
         subject: '',
         body: '',
         isRead: false,
+        isStar: false,
         sentAt: null,
         removedAt: null,
         from: '',
@@ -75,7 +76,7 @@ function _createEmails() {
     email.id = utilService.makeId()
     email.subject = utilService.makeLorem(3)
     email.body = utilService.makeLorem(10)
-    email.sentAt = Date()
+    email.sentAt = utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1"))
     email.from = `${utilService.makeLorem(1)}@appsus.com`
     email.to = `${utilService.makeLorem(1)}@appsus.com`
     return email

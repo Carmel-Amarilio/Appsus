@@ -1,15 +1,27 @@
-export function EmailList({emails}) {
+export function EmailList({ emails }) {
+
     return (
         <section className="email-list" >
-            <ul>
-                {emails.map(email =>
-                    <li className ="flex space-between" key ={email.id}>
-                        <p>{email.from}</p>
-                        <p>{email.subject}</p>
-                        <p>{email.body}</p>
-                    </li>)}
-            </ul>
-        </section>
+            <table>
+                <tbody>
+                    {emails.map(email => {
+                        const { id, from, subject, body, sentAt, isRead, isStar } = email
+                        return < tr className={isRead ? 'read' : ''} key={id} >
+                            <td>
+                                <button className={'star-btn ' + (isStar&&'starred')}>
+                                    {isStar && <i className="fa-solid fa-star"></i>}
+                                    {!isStar && <i className="fa-regular fa-star"></i>}
+                                </button>
+                            </td>
+                            <td>{from}</td>
+                            <td>{subject}</td>
+                            <td>{body}</td>
+                            <td>{sentAt}</td>
+                        </tr>
+                    })}
+                </tbody>
+            </table>
+        </section >
     )
 }
 

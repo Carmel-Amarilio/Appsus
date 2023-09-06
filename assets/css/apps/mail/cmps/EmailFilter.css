@@ -1,4 +1,4 @@
-.email-filter{
+.email-filter {
     position: fixed;
     background-color: var(--email-page-bg-color);
     height: 100%;
@@ -6,27 +6,50 @@
     transition: 300ms;
 }
 
-.email-filter:hover{
-    width: 300px;
+.email-filter:hover {
+    width: 250px;
 }
 
-.email-filter button{
-    background-color: rgba(240, 248, 255, 0);
+.email-filter button {
+    background-color: rgba(255, 255, 255, 0);
     border: 0;
-    border-radius: 50%;
+    border-end-end-radius: 20px;
+    border-start-end-radius: 20px;
+    padding: 5px;
+    margin-bottom: 5px;
     width: max-content;
-    font-size: 0px;
-    padding: 10px;
     cursor: pointer;
 }
-
-.email-filter button:hover{
-    background-color: var(--mail-bg-color-hover);
+.email-filter button img {
+    margin-inline-start: 30px;
+    width: 25px;
 }
 
-.email-filter .new-email{
-    margin: 10px;
+.email-filter button:hover:not(:first-child) {
+    background-color: var(--mail-bg-color-hover);
+    width: 100%;
+}
+
+.email-filter .new-email {
+    margin-inline: 25px;
+    margin-block-end: 10px;
     background-color: var(--new-mail-bg-color);
     padding: 10px;
     border-radius: 10px;
+}
+
+.email-filter .new-email img{
+    margin-inline: 0px;
+}
+.email-filter .new-email:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.email-filter button .text {
+    display: none;
+}
+
+.email-filter:hover button .text {
+    display: inline;
+    margin-inline: 10px;
 }
