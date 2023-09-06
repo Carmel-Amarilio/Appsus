@@ -20,11 +20,9 @@ function query(filterBy = {}) {
     //   const regExp = new RegExp(filterBy.txt, "i");
     //   notes = notes.filter((car) => regExp.test(car.vendor));
     // }
-
     // if (filterBy.minSpeed) {
     //   notes = notes.filter((car) => car.maxSpeed >= filterBy.minSpeed);
     // }
-
     return notes;
   });
 }
@@ -56,7 +54,7 @@ function getEmptyNote(vendor = "", maxSpeed = "") {
 }
 
 function getDefaultFilter() {
-  return { txt: "", minSpeed: "" };
+  return { createdAt: "", title: "", txt: "" };
 }
 
 function _createNotes() {
@@ -66,30 +64,30 @@ function _createNotes() {
     notes.push(
       _createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "title",
-        "My password-********"
+        "My password-********",
+        utilService.makeLorem(150)
       )
     );
     notes.push(
       _createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "title",
-        "es un EMBOLA"
+        "es un EMBOLA",
+        utilService.makeLorem(150)
       )
     );
     notes.push(
       _createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "title",
-        "shopping list:milk,bread,jam"
+        "shopping list:milk,bread,jam",
+        utilService.makeLorem(150)
       )
     );
 
     notes.push(
       _createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "title",
-        "Ad Matay"
+        "Ad Matay",
+        utilService.makeLorem(150)
       )
     );
     utilService.saveToStorage(NOTE_KEY, notes);

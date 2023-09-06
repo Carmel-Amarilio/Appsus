@@ -1,27 +1,31 @@
 /* Setup */
 
-@import './setup/variables.css';
+@import "./setup/variables.css";
 /* @import './setup/fonts.css'; */
 
 /* Basics */
 
-@import './basics/base.css';
-@import './basics/helpers.css';
+@import "./basics/base.css";
+@import "./basics/helpers.css";
 /* @import './basics/layout.css'; */
 
 /* Views */
-@import './views/home.css';
+@import "./views/home.css";
 
 /* @import './apps/note/views/NoteIndex.css'; */
 
-@import './apps/mail/views/EmailIndex.css';
-@import './apps/mail/cmps/EmailHeader.css';
-@import './apps/mail/cmps/EmailFilter.css';
-@import './apps/mail/cmps/EmailList.css';
+/* mail imports*/
+@import "./apps/mail/cmps/EmailHeader.css";
+@import "./apps/mail/views/EmailIndex.css";
+@import "./apps/mail/cmps/EmailFilter.css";
+@import "./apps/mail/cmps/EmailList.css";
+
+/* note imports*/
+@import "/assets/css/apps/note/cmps/NoteList.css";
+@import "/assets/css/apps/note/views/NoteIndex.css";
 
 /* Cmps */
 
-@import './cmps/UserMsg.css';
-@import './cmps/AppHeader.css';
-
-/* @import './apps/mail/cmps/MailList.css'; */
+@import "./cmps/UserMsg.css";
+@import "./cmps/AppHeader.css";
+@import "./cmps/LongTxt.css"; /* @import './apps/mail/cmps/MailList.css'; */
