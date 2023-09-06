@@ -1,8 +1,8 @@
-import { utilService } from "./util.service.js";
-import { storageService } from "./async-storage.service.js";
+import { utilService } from "../../../services/util.service.js";
+import { storageService } from "../../../services/async-storage.service.js";
 
 const NOTE_KEY = "noteDB";
-_createnotes();
+_createNotes();
 
 export const noteService = {
   query,
@@ -49,7 +49,7 @@ function save(note, isEdit) {
 }
 
 function getAll() {
-  return storageService.query(BOOK_KEY);
+  return storageService.get(BOOK_KEY);
 }
 function getEmptyNote(vendor = "", maxSpeed = "") {
   return { vendor, maxSpeed };
@@ -59,7 +59,7 @@ function getDefaultFilter() {
   return { txt: "", minSpeed: "" };
 }
 
-function _createnotes() {
+function _createNotes() {
   let notes = utilService.loadFromStorage(NOTE_KEY);
   if (!notes || !notes.length) {
     notes = [];

@@ -1,17 +1,14 @@
 const { useState, useEffect } = React;
-import { noteService } from "../services/note.service";
-import { NoteList } from "../cmps/NoteList";
+import { noteService } from "../services/note.service.js";
+import { NoteList } from "../cmps/NoteList.jsx";
 
 export function NoteIndex() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    getAllNotes();
+    setNotes(noteService.getAll);
   }, []);
 
-  async function getAllNotes() {
-    setNotes(await noteService.getAll());
-  }
   function onRemoveNote(noteId) {
     noteService
       .remove(noteId)
@@ -29,6 +26,11 @@ export function NoteIndex() {
   return (
     <div>
       <div className={"noteIndex"}>
+        <div className={"note-header flex"}>
+          <h1>Appsus Keep</h1>
+          <input type="text" />
+          <button>search</button>
+        </div>
         <NoteList notes={notes} onRemoveNote={onRemoveNote}></NoteList>
       </div>
     </div>
