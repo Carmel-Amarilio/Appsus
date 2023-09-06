@@ -6,7 +6,10 @@ export function NoteIndex() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    setNotes(noteService.getAll);
+    noteService.query().then((res) => {
+      console.log(res);
+      setNotes(res);
+    });
   }, []);
 
   function onRemoveNote(noteId) {

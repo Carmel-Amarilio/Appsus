@@ -16,14 +16,14 @@ export const noteService = {
 
 function query(filterBy = {}) {
   return storageService.query(NOTE_KEY).then((notes) => {
-    if (filterBy.txt) {
-      const regExp = new RegExp(filterBy.txt, "i");
-      notes = notes.filter((car) => regExp.test(car.vendor));
-    }
+    // if (filterBy.txt) {
+    //   const regExp = new RegExp(filterBy.txt, "i");
+    //   notes = notes.filter((car) => regExp.test(car.vendor));
+    // }
 
-    if (filterBy.minSpeed) {
-      notes = notes.filter((car) => car.maxSpeed >= filterBy.minSpeed);
-    }
+    // if (filterBy.minSpeed) {
+    //   notes = notes.filter((car) => car.maxSpeed >= filterBy.minSpeed);
+    // }
 
     return notes;
   });
@@ -49,7 +49,7 @@ function save(note, isEdit) {
 }
 
 function getAll() {
-  return storageService.get(BOOK_KEY);
+  return storageService.get(NOTE_KEY);
 }
 function getEmptyNote(vendor = "", maxSpeed = "") {
   return { vendor, maxSpeed };
@@ -65,21 +65,21 @@ function _createNotes() {
     notes = [];
     notes.push(
       _createNote(
-        getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
+        utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "title",
         "My password-********"
       )
     );
     notes.push(
       _createNote(
-        getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
+        utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "title",
         "es un EMBOLA"
       )
     );
     notes.push(
       _createNote(
-        getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
+        utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "title",
         "shopping list:milk,bread,jam"
       )
@@ -87,7 +87,7 @@ function _createNotes() {
 
     notes.push(
       _createNote(
-        getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
+        utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "title",
         "Ad Matay"
       )
