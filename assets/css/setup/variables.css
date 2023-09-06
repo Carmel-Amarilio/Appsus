@@ -1,13 +1,16 @@
 :root {
+  --gray0: rgb(240, 243, 244);
   --gray1: rgb(240, 240, 240);
   --gray2: rgb(155, 155, 155);
   --gray3: rgb(44, 44, 44);
-  
-  /* mail */
-  --email-page-bg-color: rgb(246,248,252);
-  --mail-bg-color-read: rgb(242,246,252);
-  --new-mail-bg-color: rgb(194,231,255);
-  --mail-bg-color-select: rgb(211,227,253);
-  --mail-bg-color-hover: rgb(234,235,239);
 
+  /* mail */
+  --email-page-bg-color: rgb(246, 248, 252);
+  --mail-bg-color-read: rgb(242, 246, 252);
+  --new-mail-bg-color: rgb(194, 231, 255);
+  --mail-bg-color-select: rgb(211, 227, 253);
+  --mail-bg-color-hover: rgb(234, 235, 239);
+
+  /* notes */
+  --notes-menu-hover: rgb(253, 239, 195);
 }
