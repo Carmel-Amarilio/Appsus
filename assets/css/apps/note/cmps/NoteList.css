@@ -1,1 +1,11 @@
- /* note list */
+/* note list */
+button {
+  border: 0;
+  border-radius: 50%;
+}
+button:hover {
+  background-color: var(--mail-bg-color-hover);
+}
+button img {
+  width: 1em;
+}
