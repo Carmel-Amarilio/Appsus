@@ -1,6 +1,11 @@
 :root {
-  --main-bg-color: lightblue;
   --gray1: rgb(240, 240, 240);
   --gray2: rgb(155, 155, 155);
   --gray3: rgb(44, 44, 44);
+  
+  /* mail */
+  --mail-bg-color: rgb(246,248,252);
+  --mail-bg-color-select: rgb(211,227,253);
+  --mail-bg-color-hover: rgb(234,235,239);
+
 }
