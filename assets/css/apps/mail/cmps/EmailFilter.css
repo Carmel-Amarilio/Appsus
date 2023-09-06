@@ -1,0 +1,32 @@
+.email-filter{
+    position: fixed;
+    background-color: var(--email-page-bg-color);
+    height: 100%;
+    width: 90px;
+    transition: 300ms;
+}
+
+.email-filter:hover{
+    width: 300px;
+}
+
+.email-filter button{
+    background-color: rgba(240, 248, 255, 0);
+    border: 0;
+    border-radius: 50%;
+    width: max-content;
+    font-size: 0px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.email-filter button:hover{
+    background-color: var(--mail-bg-color-hover);
+}
+
+.email-filter .new-email{
+    margin: 10px;
+    background-color: var(--new-mail-bg-color);
+    padding: 10px;
+    border-radius: 10px;
+}
