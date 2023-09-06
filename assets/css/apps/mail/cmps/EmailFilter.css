@@ -11,14 +11,11 @@
 }
 
 .email-filter button {
-    background-color: rgba(255, 255, 255, 0);
-    border: 0;
     border-end-end-radius: 20px;
     border-start-end-radius: 20px;
     padding: 5px;
     margin-bottom: 5px;
     width: max-content;
-    cursor: pointer;
 }
 .email-filter button img {
     margin-inline-start: 30px;

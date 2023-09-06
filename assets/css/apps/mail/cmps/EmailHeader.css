@@ -3,10 +3,6 @@
 }
 
 .email-header button {
-    background-color: rgba(137, 43, 226, 0);
-    border: 0;
-    cursor: pointer;
-    padding: 10px;
     border-radius: 50%;
 }
 
