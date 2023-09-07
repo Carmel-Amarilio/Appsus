@@ -1,12 +1,14 @@
 .email-filter {
-    position: fixed;
+    /* position: fixed; */
+    margin: 0;
     background-color: var(--email-page-bg-color);
-    height: 100%;
+    height: 100vh;
     width: 90px;
-    transition: 300ms;
+    transition: 200ms;
 }
 
-.email-filter:hover {
+.email-filter:hover, .email-filter.open {
+    z-index: 2;
     width: 250px;
 }
 
@@ -17,17 +19,22 @@
     margin-bottom: 5px;
     width: max-content;
 }
+
 .email-filter button img {
     margin-inline-start: 30px;
     width: 25px;
 }
 
-.email-filter button:hover:not(:first-child) {
+.email-filter button:hover:not(:first-child, .select) {
     background-color: var(--mail-bg-color-hover);
     width: 100%;
 }
 
-.email-filter .new-email {
+.email-filter button.select {
+    background-color: var(--mail-bg-color-select);
+}
+
+.email-filter .new-email-icn {
     margin-inline: 25px;
     margin-block-end: 10px;
     background-color: var(--new-mail-bg-color);
@@ -35,11 +42,12 @@
     border-radius: 10px;
 }
 
-.email-filter .new-email img{
+.email-filter .new-email-icn img {
     margin-inline: 0px;
 }
-.email-filter .new-email:hover{
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+
+.email-filter .new-email-icn:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .email-filter button .text {
@@ -47,6 +55,11 @@
 }
 
 .email-filter:hover button .text {
+    display: inline;
+    margin-inline: 10px;
+}
+
+.email-filter.open button .text{
     display: inline;
     margin-inline: 10px;
 }
