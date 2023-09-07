@@ -16,20 +16,23 @@ export const noteService = {
 
 function query(filterBy = {}) {
   return storageService.query(NOTE_KEY).then((notes) => {
+    if (filterBy.filter) {
+      const regExp = new RegExp(filterBy.filter, "i");
+      notes = notes.filter(
+        (note) => regExp.test(note.info.title) || regExp.test(note.info.txt)
+      );
+    }
     // if (filterBy.txt) {
     //   const regExp = new RegExp(filterBy.txt, "i");
-    //   notes = notes.filter((car) => regExp.test(car.vendor));
+    //   notes = notes.filter((note) => regExp.test(note.info.txt));
     // }
-    // if (filterBy.minSpeed) {
-    //   notes = notes.filter((car) => car.maxSpeed >= filterBy.minSpeed);
-    // }
+
     return notes;
   });
 }
 
 function get(noteId) {
   return storageService.get(NOTE_KEY, noteId).then((note) => {
-    note = _setNextPrevCarId(note);
     return note;
   });
 }
@@ -54,7 +57,7 @@ function getEmptyNote(vendor = "", maxSpeed = "") {
 }
 
 function getDefaultFilter() {
-  return { createdAt: "", title: "", txt: "" };
+  return { filter: "" };
 }
 
 function _createNotes() {
@@ -109,7 +112,7 @@ function _createNote(createdAt, title, txt) {
     },
   };
 }
-function _setNextPrevCarId(note) {
+function _setNextPrevnoteId(note) {
   return storageService.query(NOTE_KEY).then((notes) => {
     const noteIdx = notes.findIndex((currNote) => currNote.id === note.id);
     const nextNote = notes[noteIdx + 1] ? notes[noteIdx + 1] : notes[0];

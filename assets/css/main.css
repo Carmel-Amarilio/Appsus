@@ -12,7 +12,10 @@
 /* Views */
 @import "./views/home.css";
 
-/* @import './apps/note/views/NoteIndex.css'; */
+/* note */
+@import "./apps/note/cmps/NoteAdd.css";
+@import "./apps/note/cmps/NoteList.css";
+@import "./apps/note/views/NoteIndex.css";
 
 /* mail imports*/
 @import "./apps/mail/views/EmailIndex.css";
@@ -21,12 +24,10 @@
 @import "./apps/mail/cmps/EmailList.css";
 @import "./apps/mail/cmps/NewEmail.css";
 
-/* note imports*/
-@import "/assets/css/apps/note/cmps/NoteList.css";
-@import "/assets/css/apps/note/views/NoteIndex.css";
-
 /* Cmps */
 
 @import "./cmps/UserMsg.css";
 @import "./cmps/AppHeader.css";
-@import "./cmps/LongTxt.css"; /* @import './apps/mail/cmps/MailList.css'; */
+@import "./cmps/LongTxt.css";
+
+/* @import './apps/mail/cmps/MailList.css'; */

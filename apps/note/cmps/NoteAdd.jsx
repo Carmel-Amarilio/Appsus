@@ -1,7 +1,7 @@
 export function NoteAdd() {
   return (
     <div className={"note-add flex"}>
-      <input type="text" placeholder="Write a note" />
+      <p>Add a note</p>
       <div>
         <button>
           <img
