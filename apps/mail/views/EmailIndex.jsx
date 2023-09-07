@@ -4,9 +4,10 @@ import { EmailHeader } from '../cmps/EmailHeader.jsx'
 import { EmailsFilter } from '../cmps/EmailsFilter.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
 import { NewEmail } from '../cmps/NewEmail.jsx'
+import { EmailData } from "../views/EmailData.jsx"
 
 const { useState, useEffect } = React
-const { useParams } = ReactRouterDOM
+const { useParams} = ReactRouterDOM
 
 export function EmailIndex() {
     const [emails, setEmails] = useState(null)
@@ -74,13 +75,13 @@ export function EmailIndex() {
     }
 
     function onRemove(email) {
-        if(!email.removedAt) {
+        if (!email.removedAt) {
             email.removedAt = Date.now()
             emailService.save(email)
-        }else emailService.remove(email.id)
+        } else emailService.remove(email.id)
     }
 
-    function onSearch(search){
+    function onSearch(search) {
         setSearchBy(search)
     }
 
@@ -89,7 +90,9 @@ export function EmailIndex() {
             <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} />
             <div className="flex">
                 <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} />
-                <EmailList emails={emails} onStar={onStar} onRemove={onRemove} />
+                {!params.emailId && <EmailList emails={emails} onStar={onStar} onRemove={onRemove} />}
+                {params.emailId &&<EmailData onStar={onStar} onRemove={onRemove}/>}
+
             </div>
             {isNewEmail && <NewEmail onClose={onToggleNewEmail} onSend={onSend} />}
         </section>

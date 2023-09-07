@@ -24,4 +24,3 @@ export function EmailHeader({ onToggleFilter, onSearch }) {
         </section>
     )
 }
-// <input onChange={handleChange} type="text" placeholder="To" id="txt" name="to" />

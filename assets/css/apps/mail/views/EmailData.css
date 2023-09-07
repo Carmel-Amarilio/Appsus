@@ -1,0 +1,33 @@
+.email-data {
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+    width: 50vw;
+}
+
+.email-data .header-nav img {
+    width: 20px;
+}
+
+.email-data .header-nav button {
+    padding: 5px;
+    margin-inline: 10px;
+}
+
+.email-data .header-nav button:hover {
+    padding: 5px;
+    background-color: var(--mail-bg-color-hover);
+    border-radius: 50%;
+}
+
+.email-data .starred {
+    color: rgb(250, 232, 75);
+}
+
+.email-data .email-text h1 {
+    font-size: 30px;
+}
+
+.email-data .email-text >* {
+    margin-block: 10px;
+}
