@@ -1,8 +1,8 @@
 const { Link } = ReactRouterDOM
 export function EmailsFilter({onNewEmail, filterBy, isOpen }) {
     return (
-        <section onClick={onNewEmail} className={"email-filter flex column " + (isOpen && 'open')}>
-            <button className="new-email-icn flex align-center">
+        <section  className={"email-filter flex column " + (isOpen && 'open')}>
+            <button onClick={onNewEmail} className="new-email-icn flex align-center">
                     <img src="../../assets/icons/pen.png" />
                     <span className="text">Compose</span>
             </button>

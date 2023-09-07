@@ -1,3 +1,4 @@
+import { utilService } from '../../../services/util.service.js'
 import { emailService } from '../services/email.service.js'
 import { EmailHeader } from '../cmps/EmailHeader.jsx'
 import { EmailsFilter } from '../cmps/EmailsFilter.jsx'
@@ -11,7 +12,7 @@ export function EmailIndex() {
     const [emails, setEmails] = useState(null)
     const [filterBy, setFilterBy] = useState('inbox')
     const [isFilterOpen, setIsFilterOpen] = useState(false)
-    const [isNewEmail, setIsNewEmail] = useState(true)
+    const [isNewEmail, setIsNewEmail] = useState(false)
     const params = useParams()
 
     useEffect(() => {
@@ -44,22 +45,39 @@ export function EmailIndex() {
         if (filterBy === 'starred') setEmails(emails.filter(email => email.isStar))
     }
 
-    function onToggleFilter(){
+    function onToggleFilter() {
         setIsFilterOpen(!isFilterOpen)
     }
 
-    function onToggleNewEmail(){
+    function onToggleNewEmail() {
         setIsNewEmail(!isNewEmail)
     }
 
+    function onSend(newEmail) {
+        const { email: from } = emailService.getUser()
+        const { subject, body, to } = newEmail
+        const email = {
+            subject,
+            body,
+            isRead: false,
+            sentAt: utilService.getCurrDate(),
+            removedAt: null,
+            from,
+            to
+        }
+        emailService.save(email)
+        onToggleNewEmail()
+    }
+
+
     return (
         <section className="email-index">
-            <EmailHeader onToggleFilter ={onToggleFilter}/>
+            <EmailHeader onToggleFilter={onToggleFilter} />
             <div className="flex">
                 <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} />
                 <EmailList emails={emails} onStar={onStar} />
             </div>
-            {isNewEmail && <NewEmail onClose={onToggleNewEmail}/>}
+            {isNewEmail && <NewEmail onClose={onToggleNewEmail} onSend={onSend} />}
         </section>
     )
 }
