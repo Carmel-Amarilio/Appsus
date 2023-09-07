@@ -5,6 +5,7 @@
     height: 100vh;
     width: 90px;
     transition: 200ms;
+    
 }
 
 .email-filter:hover, .email-filter.open {
