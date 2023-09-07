@@ -3,7 +3,6 @@ export function NoteList({ notes, onRemoveNote }) {
   return (
     <ul className="note-list clean-list">
       {notes.map((note, idx) => {
-        console.log(notes);
         return (
           <li key={idx} className="note-card">
             <button>

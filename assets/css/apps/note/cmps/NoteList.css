@@ -21,16 +21,16 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 }
 
-button {
+.note-list button {
   padding: 10px;
   background-color: #fff;
   border: 0;
   border-radius: 50%;
 }
-button:hover {
+.note-list button:hover {
   background-color: var(--mail-bg-color-hover);
   cursor: pointer;
 }
-button img {
+.note-list button img {
   width: 1rem;
 }
