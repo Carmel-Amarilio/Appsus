@@ -1,6 +1,5 @@
 .email-list {
     margin-block-start: 10px;
-    margin-inline-start: 90px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 20px;
     background-color: white;
@@ -39,4 +38,11 @@
 .email-list .star-btn:hover{
   background-color: var(--mail-bg-color-hover);
   border-radius: 50%;
+}
+
+.list-msg {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
 }
