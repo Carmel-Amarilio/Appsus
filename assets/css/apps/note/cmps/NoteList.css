@@ -25,7 +25,7 @@
   padding: 10px;
   background-color: #fff;
   border: 0;
-  /* border-radius: 50%; */
+  border-radius: 50%;
 }
 .note-list button:hover {
   background-color: var(--mail-bg-color-hover);
