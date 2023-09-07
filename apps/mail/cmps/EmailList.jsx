@@ -1,5 +1,7 @@
-export function EmailList({ emails }) {
-
+export function EmailList({ emails, onStar }) {
+    console.log(emails);
+    if (!emails) return <div className="list-msg">loading...</div>
+    if (!emails.length) return <div className="list-msg">No Emails</div>
     return (
         <section className="email-list" >
             <table>
@@ -8,7 +10,7 @@ export function EmailList({ emails }) {
                         const { id, from, subject, body, sentAt, isRead, isStar } = email
                         return < tr className={isRead ? 'read' : ''} key={id} >
                             <td>
-                                <button className={'star-btn ' + (isStar&&'starred')}>
+                                <button onClick={() => onStar(email)} className={'star-btn ' + (isStar && 'starred')}>
                                     {isStar && <i className="fa-solid fa-star"></i>}
                                     {!isStar && <i className="fa-regular fa-star"></i>}
                                 </button>

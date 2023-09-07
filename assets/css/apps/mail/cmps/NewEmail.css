@@ -1,0 +1,48 @@
+.new-email {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    height: 450px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    font-size: .8em;
+}
+
+.new-email .header {
+    background-color: var(--email-page-bg-color);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px;
+}
+
+.new-email p {
+    margin: 0px;
+}
+
+.new-email .header i {
+    color: rgb(68, 71, 70);
+}
+
+.new-email .header button {
+    height: min-content;
+    padding: 5px;
+}
+
+.new-email .input-contener{
+    padding: 10px;
+}
+
+.new-email input{
+    width: 100%;
+    padding: 10px;
+    border-bottom: rgba(223, 222, 222, 0.815) solid 1px;
+}
+
+.new-email input:focus {
+    outline: none; 
+    border: none;  
+    border-bottom: rgba(223, 222, 222, 0.815) solid 1px;
+  }

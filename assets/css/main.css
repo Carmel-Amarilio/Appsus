@@ -17,12 +17,12 @@
 @import "./apps/note/cmps/NoteList.css";
 @import "./apps/note/views/NoteIndex.css";
 
-/* mail */
-
+/* mail imports*/
 @import "./apps/mail/views/EmailIndex.css";
 @import "./apps/mail/cmps/EmailHeader.css";
 @import "./apps/mail/cmps/EmailFilter.css";
 @import "./apps/mail/cmps/EmailList.css";
+@import "./apps/mail/cmps/NewEmail.css";
 
 /* Cmps */
 
