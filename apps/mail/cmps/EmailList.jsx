@@ -27,7 +27,7 @@ export function EmailList({ emails, onStar, onRemove }) {
                             <td>{subject}</td>
                             <td>{body}</td>
                             <td>{sentAt}</td>
-                            <td>
+                            <td className="tool-tr">
                                 <button className="delete-btn" onClick={(e) => { e.stopPropagation(); onRemove(email) }}>
                                     <img src="../../assets/icons/delete.png" />
                                 </button>

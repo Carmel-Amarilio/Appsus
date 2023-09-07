@@ -12,10 +12,14 @@ export function EmailData({ onStar, onRemove }) {
 
     useEffect(() => {
         emailService.get(params.emailId)
-            .then(setEmail)
+            .then(email => {
+                email.isRead = true
+                emailService.save(email)
+                setEmail(email)
+            })
     }, [])
 
-    function onBack(){
+    function onBack() {
         navigate(-1)
     }
 
@@ -29,7 +33,7 @@ export function EmailData({ onStar, onRemove }) {
                     {isStar && <i className="fa-solid fa-star"></i>}
                     {!isStar && <i className="fa-regular fa-star"></i>}
                 </button>
-                <button onClick={() =>{ onRemove(email); onBack()}} className="delete-btn" >
+                <button onClick={() => { onRemove(email); onBack() }} className="delete-btn" >
                     <img src="../../assets/icons/delete.png" />
                 </button>
             </section>

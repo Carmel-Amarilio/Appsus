@@ -1,11 +1,9 @@
 .email-filter {
-    /* position: fixed; */
     margin: 0;
     background-color: var(--email-page-bg-color);
     height: 100vh;
     width: 90px;
     transition: 200ms;
-    
 }
 
 .email-filter:hover, .email-filter.open {

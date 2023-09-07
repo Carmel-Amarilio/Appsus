@@ -1,4 +1,4 @@
-.email-index{
+.email-index {
     position: absolute;
     background-color: var(--email-page-bg-color);
     height: 100%;
@@ -6,19 +6,16 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.email-index button{
+.email-index button {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0);
     border: 0;
     padding: 10px;
 }
 
-/* .email-index .email-filter:hover {
-    position: absolute;
-    width: 250px;
+
+.email-index .email-filter.open+.email-list,
+.email-index .email-filter.open+.email-data {
+    position: relative;
+    left: 0;
 }
-.email-index .email-filter:hover + .email-list{
-    position: absolute;
-    left: 90px;
-    margin-inline-start: 90px; 
-} */
