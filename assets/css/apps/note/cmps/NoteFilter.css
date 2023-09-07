@@ -1,0 +1,25 @@
+.search-bar {
+  background-color: var(--grey2);
+  border: 0;
+  border-radius: 5px;
+  justify-self: center;
+}
+
+.search-bar form {
+  background-color: var(--grey2);
+}
+
+.search-bar input {
+  background-color: var(--grey2);
+}
+
+.search-bar button {
+  padding: 10px;
+  background-color: var(--grey2);
+  border: 0;
+  border-radius: 50%;
+}
+
+.search-bar button img {
+  width: 1rem;
+}

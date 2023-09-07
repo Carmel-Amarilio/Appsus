@@ -23,3 +23,16 @@
 .note-add button img {
   width: 1rem;
 }
+
+.note-add-popup {
+  border: 1px solid var(--gray1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  /* text-align: center; */
+  padding: 20px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}

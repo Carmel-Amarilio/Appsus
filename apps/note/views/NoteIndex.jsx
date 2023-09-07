@@ -3,7 +3,7 @@ import { noteService } from "../services/note.service.js";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { NoteFilter } from "../cmps/NoteFilter.jsx";
-
+import { NoteAdd } from "../cmps/NoteAdd.jsx";
 export function NoteIndex() {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
@@ -39,6 +39,11 @@ export function NoteIndex() {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
+  function handleNoteAdded() {
+    getAllNotes();
+    // setIsAdd(false);
+  }
+
   if (!notes) return <div>Loading...</div>;
   return (
     <div className={"note-index"}>
@@ -50,18 +55,12 @@ export function NoteIndex() {
             onSetFilterBy={onSetFilterBy}
           ></NoteFilter>
         </div>
-        {/* <div className={"search-bar flex"}>
-          <input type="text" placeholder="search" />
-          <button>
-            <img src={"assets/icons/search.png"} alt="" />
-          </button>
-        </div> */}
       </div>
 
       <div
         className={"note-add flex"}
         onClick={() => {
-          setIsAdd(!isAdd);
+          setIsAdd(true);
           console.log(isAdd);
         }}
       >
@@ -80,6 +79,8 @@ export function NoteIndex() {
             />
           </button>
         </div>
+        {console.log(isAdd)}
+        {isAdd && <NoteAdd onNoteAdded={handleNoteAdded}></NoteAdd>}
       </div>
       <NoteList notes={notes} onRemoveNote={onRemoveNote}></NoteList>
     </div>

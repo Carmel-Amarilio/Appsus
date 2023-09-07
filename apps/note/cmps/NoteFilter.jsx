@@ -47,27 +47,19 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
 
   const { filter } = filterByToEdit;
   return (
-    <section className="book-filter flex space-around  align-center">
-      <h2>Filter By</h2>
+    <section className="search-bar flex space-around  align-center">
+      <button>
+        <img src={"assets/icons/search.png"} alt="" />
+      </button>
       <form onSubmit={onSubmitFilter}>
-        {/* <label htmlFor="title">By Title </label> */}
         <input
           value={filter}
           onChange={handleChange}
           type="text"
-          placeholder="Filter"
+          placeholder="Search"
           id="filter"
           name="filter"
         />
-        {/* <label htmlFor="text">By text</label> */}
-        {/* <input
-          value={txt}
-          onChange={handleChange}
-          type="text"
-          placeholder="By text"
-          id="txt"
-          name="txt"
-        /> */}
       </form>
     </section>
   );

@@ -10,6 +10,7 @@ export const noteService = {
   remove,
   save,
   getAll,
+  createNote,
   getEmptyNote,
   getDefaultFilter,
 };
@@ -65,21 +66,21 @@ function _createNotes() {
   if (!notes || !notes.length) {
     notes = [];
     notes.push(
-      _createNote(
+      createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "My password-********",
         utilService.makeLorem(150)
       )
     );
     notes.push(
-      _createNote(
+      createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "es un EMBOLA",
         utilService.makeLorem(150)
       )
     );
     notes.push(
-      _createNote(
+      createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "shopping list:milk,bread,jam",
         utilService.makeLorem(150)
@@ -87,7 +88,7 @@ function _createNotes() {
     );
 
     notes.push(
-      _createNote(
+      createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "Ad Matay",
         utilService.makeLorem(150)
@@ -97,7 +98,7 @@ function _createNotes() {
   }
 }
 
-function _createNote(createdAt, title, txt) {
+function createNote(createdAt, title, txt) {
   return {
     id: utilService.makeId(),
     createdAt,
