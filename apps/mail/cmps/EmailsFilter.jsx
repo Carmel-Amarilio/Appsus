@@ -1,27 +1,33 @@
 const { Link } = ReactRouterDOM
-export function EmailsFilter({onNewEmail, filterBy, isOpen }) {
+export function EmailsFilter({ onNewEmail, filterBy, isOpen }) {
     return (
-        <section  className={"email-filter flex column " + (isOpen && 'open')}>
+        <section className={"email-filter flex column " + (isOpen && 'open')}>
             <button onClick={onNewEmail} className="new-email-icn flex align-center">
-                    <img src="../../assets/icons/pen.png" />
-                    <span className="text">Compose</span>
+                <img src="../../assets/icons/pen.png" />
+                <span className="text">Compose</span>
             </button>
-            <button className={"flex align-center " + (filterBy === 'inbox' && 'select')}>
-                <Link to={`/email/inbox`}>
+            <button className={filterBy === 'inbox' ? 'select' : ''}>
+                <Link to={`/email/inbox`} className="flex align-center">
                     <img src="../../assets/icons/inbox.png" />
                     <span className="text">Inbox</span>
                 </Link>
             </button>
-            <button className={"flex align-center " + (filterBy === 'starred' && 'select')}>
-                <Link to={`/email/starred`}>
+            <button className={filterBy === 'starred' ? 'select' : ''}>
+                <Link to={`/email/starred`} className="flex align-center">
                     <img src="../../assets/icons/star.png" />
                     <span className="text">Starred</span>
                 </Link>
             </button>
-            <button className={"flex align-center " + (filterBy === 'send' && 'select')}>
-                <Link to={`/email/send`}>
+            <button className={filterBy === 'send' ? 'select' : ''}>
+                <Link to={`/email/send`} className="flex align-center">
                     <img src="../../assets/icons/send.png" />
                     <span className="text">Send</span>
+                </Link>
+            </button>
+            <button className={filterBy === 'remove' ? 'select' : ''}>
+                <Link to={`/email/remove`} className="flex align-center">
+                    <img src="../../assets/icons/delete.png" />
+                    <span className="text">Trash</span>
                 </Link>
             </button>
         </section>

@@ -6,7 +6,8 @@
     height: max-content;
     font-size: 13px;
 }
-.email-list table{
+
+.email-list table {
     border-collapse: collapse;
     width: 100%;
 }
@@ -23,21 +24,23 @@
     background-color: var(--email-page-bg-color);
 }
 
-.email-list table tr:hover{
+.email-list table tr:hover {
     border: .5px solid lightgrey;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-.email-list .star-btn{
+.email-list .star-btn,
+.delete-btn {
     padding: 10px;
 }
-.email-list .starred{
+
+.email-list .starred {
     color: rgb(250, 232, 75);
 }
 
-.email-list .star-btn:hover{
-  background-color: var(--mail-bg-color-hover);
-  border-radius: 50%;
+.email-list .star-btn:hover, .delete-btn:hover {
+    background-color: var(--mail-bg-color-hover);
+    border-radius: 50%;
 }
 
 .list-msg {
@@ -47,6 +50,10 @@
     font-size: 20px;
 }
 
-/* .email-list table tr:hover .delete-btn .delete-btn{
+.email-list table tr:hover .delete-btn {
+    display: inline;
+}
 
-} */
+.email-list .delete-btn {
+    display: none;
+}

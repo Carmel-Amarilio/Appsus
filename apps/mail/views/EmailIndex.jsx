@@ -11,24 +11,28 @@ const { useParams } = ReactRouterDOM
 export function EmailIndex() {
     const [emails, setEmails] = useState(null)
     const [filterBy, setFilterBy] = useState('inbox')
-    const [isFilterOpen, setIsFilterOpen] = useState(false)
+    const [searchBy, setSearchBy] = useState('')
     const [isNewEmail, setIsNewEmail] = useState(false)
+    const [isFilterOpen, setIsFilterOpen] = useState(false)
     const params = useParams()
 
     useEffect(() => {
         const { email: userAddress } = emailService.getUser()
         setFilterBy(params.filter);
-        emailService.query().then(emails => {
+        emailService.query(searchBy).then(emails => {
             console.log(emails);
             switch (params.filter) {
                 case 'inbox':
-                    emails = emails.filter(email => email.from !== userAddress)
+                    emails = emails.filter(email => email.from !== userAddress && !email.removedAt)
                     break
                 case 'starred':
-                    emails = emails.filter(email => email.isStar)
+                    emails = emails.filter(email => email.isStar && !email.removedAt)
                     break
                 case 'send':
-                    emails = emails.filter(email => email.from === userAddress)
+                    emails = emails.filter(email => email.from === userAddress && !email.removedAt)
+                    break
+                case 'remove':
+                    emails = emails.filter(email => email.removedAt)
                     break
 
                 default:
@@ -36,7 +40,7 @@ export function EmailIndex() {
             }
             setEmails(emails)
         })
-    }, [params.filter])
+    }, [params.filter, searchBy])
 
     function onStar(email) {
         email.isStar = !email.isStar
@@ -69,13 +73,23 @@ export function EmailIndex() {
         onToggleNewEmail()
     }
 
+    function onRemove(email) {
+        if(!email.removedAt) {
+            email.removedAt = Date.now()
+            emailService.save(email)
+        }else emailService.remove(email.id)
+    }
+
+    function onSearch(search){
+        setSearchBy(search)
+    }
 
     return (
         <section className="email-index">
-            <EmailHeader onToggleFilter={onToggleFilter} />
+            <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} />
             <div className="flex">
                 <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} />
-                <EmailList emails={emails} onStar={onStar} />
+                <EmailList emails={emails} onStar={onStar} onRemove={onRemove} />
             </div>
             {isNewEmail && <NewEmail onClose={onToggleNewEmail} onSend={onSend} />}
         </section>

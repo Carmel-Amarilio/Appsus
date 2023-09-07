@@ -1,4 +1,4 @@
-export function EmailList({ emails, onStar }) {
+export function EmailList({ emails, onStar, onRemove }) {
     console.log(emails);
     if (!emails) return <div className="list-msg">loading...</div>
     if (!emails.length) return <div className="list-msg">No Emails</div>
@@ -20,8 +20,8 @@ export function EmailList({ emails, onStar }) {
                             <td>{body}</td>
                             <td>{sentAt}</td>
                             <td>
-                                <button onClick={() => onRemove(id)} className="delete-btn">
-                                    <img src="../../assets/icons/delete.png"></img>
+                                <button className="delete-btn" onClick={() => onRemove(email)}>
+                                    <img src="../../assets/icons/delete.png"/>
                                 </button>
                             </td>
                         </tr>
