@@ -19,6 +19,11 @@ export function EmailList({ emails, onStar }) {
                             <td>{subject}</td>
                             <td>{body}</td>
                             <td>{sentAt}</td>
+                            <td>
+                                <button onClick={() => onRemove(id)} className="delete-btn">
+                                    <img src="../../assets/icons/delete.png"></img>
+                                </button>
+                            </td>
                         </tr>
                     })}
                 </tbody>
