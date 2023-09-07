@@ -9,6 +9,7 @@ export const utilService = {
   getRandomDate,
   loadFromStorage,
   saveToStorage,
+  getCurrDate
 };
 function saveToStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val));
@@ -120,4 +121,12 @@ function getRandomDate(startDate, endDate) {
   const randomTime = Math.random() * timeDiff;
   const randomDate = new Date(startDate.getTime() + randomTime);
   return randomDate.toISOString().slice(0, 10);
+}
+function getCurrDate(){
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+const day = String(currentDate.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
