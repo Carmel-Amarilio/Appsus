@@ -1,7 +1,5 @@
 import { LongTxt } from "../../../cmps/LongTxt.jsx";
 
-const { useState, useEffect } = React;
-
 export function NotePreview({ note }) {
   return (
     <div className="note-preview">

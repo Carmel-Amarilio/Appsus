@@ -1,13 +1,5 @@
 const { Route, Routes } = ReactRouterDOM;
-const { useState, useEffect } = React;
 const Router = ReactRouterDOM.HashRouter;
-
-import { AppHeader } from "./cmps/AppHeader.jsx";
-import { About } from "./views/About.jsx";
-import { Home } from "./views/Home.jsx";
-import { EmailIndex } from "./apps/mail/views/EmailIndex.jsx";
-
-import { NoteIndex } from "./apps/note/views/NoteIndex.jsx";
 
 import { AppHeader } from "./cmps/AppHeader.jsx";
 import { About } from "./views/About.jsx";
@@ -16,16 +8,6 @@ import { EmailIndex } from "./apps/mail/views/EmailIndex.jsx";
 import { NoteIndex } from "./apps/note/views/NoteIndex.jsx";
 
 export function App() {
-  const [isBackdrop, setIsBackdrop] = useState(false);
-
-  useEffect(() => {
-    const classList = document.body.classList;
-
-    isBackdrop
-      ? classList.add("overflow-none")
-      : classList.remove("overflow-none");
-  }, [isBackdrop]);
-
   return (
     <Router>
       <section className={`app`}>
@@ -37,12 +19,7 @@ export function App() {
           <Route path="/email/:filter" element={<EmailIndex />} />
           <Route path="/email/:fil/:emailId" element={<EmailIndex />} />
 
-          <Route
-            path="/note"
-            element={
-              <NoteIndex setBackdrop={(value) => setIsBackdrop(value)} />
-            }
-          />
+          <Route path="/note" element={<NoteIndex />} />
         </Routes>
       </section>
     </Router>

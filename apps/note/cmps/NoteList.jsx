@@ -1,8 +1,11 @@
-const { useState } = React;
+const { useState, Fragment } = React;
 import { NotePreview } from "./NotePreview.jsx";
 import { NoteEdit } from "./NoteEdit.jsx";
+import { Backdrop } from "./Backdrop.jsx";
+
 export function NoteList({ notes, onRemoveNote, onEditNote }) {
   const [noteEditOpened, setNoteEditOpened] = useState(null);
+
   return (
     <ul className="note-list clean-list">
       {notes.map((note, idx) => {
@@ -34,6 +37,7 @@ export function NoteList({ notes, onRemoveNote, onEditNote }) {
                   setNoteEditOpened((prev) =>
                     prev != null && prev === idx ? null : idx
                   );
+                  setIsBackdrop(true);
                 }}
               >
                 <img
@@ -54,13 +58,19 @@ export function NoteList({ notes, onRemoveNote, onEditNote }) {
               </button>
             </section>
             {noteEditOpened === idx && (
-              <NoteEdit
-                noteId={note.id}
-                onNoteEdit={(note) => {
-                  setNoteEditOpened(null);
-                  onEditNote(note);
-                }}
-              ></NoteEdit>
+              <Fragment>
+                <NoteEdit
+                  noteId={note.id}
+                  onNoteEdit={(note) => {
+                    setNoteEditOpened(null);
+                    onEditNote(note);
+                  }}
+                ></NoteEdit>
+                <Backdrop
+                  isBackdrop={noteEditOpened != null}
+                  setIsBackdrop={() => setNoteEditOpened(null)}
+                ></Backdrop>
+              </Fragment>
             )}
           </li>
         );

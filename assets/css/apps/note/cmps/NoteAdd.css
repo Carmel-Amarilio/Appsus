@@ -25,7 +25,6 @@
 }
 
 .note-add-popup {
-  position: absolute;
   background-color: #fff;
   width: 60vw;
   border: 1px solid var(--gray1);
@@ -33,7 +32,6 @@
   padding: 20px;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
-  z-index: 2;
 }
 
 .note-add-popup form {

@@ -1,6 +1,6 @@
 const { useState, useEffect } = React;
 import { noteService } from "../services/note.service.js";
-export function NoteEdit({ noteId, onNoteEdit }) {
+export function NoteEdit({ noteId, onNoteEdit, onNoteEdited }) {
   const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote());
   const { info } = noteToEdit;
 
@@ -40,11 +40,14 @@ export function NoteEdit({ noteId, onNoteEdit }) {
     noteService
       .save(note, true)
       .then((newNote) => onNoteEdit(newNote))
+      .then(() => {
+        onNoteEdited();
+      })
       .catch((err) => console.log("err:", err));
   }
 
   return (
-    <div className={"note-edit flex"}>
+    <div className={"note-edit "}>
       <form
         onSubmit={(ev) => {
           ev.preventDefault();

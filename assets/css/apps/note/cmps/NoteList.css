@@ -9,6 +9,7 @@
 }
 
 .note-card {
+  width: fit-content;
   border: 1px solid var(--gray1);
   border-radius: 5px;
   display: flex;

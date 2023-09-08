@@ -4,11 +4,10 @@ import { NoteList } from "../cmps/NoteList.jsx";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { NoteFilter } from "../cmps/NoteFilter.jsx";
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
-export function NoteIndex({ setBackdrop }) {
+export function NoteIndex() {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
   const [isAdd, setIsAdd] = useState(false);
-  const dynClass = isAdd ? "on" : "off";
 
   useEffect(() => {
     getAllNotes();
@@ -17,10 +16,6 @@ export function NoteIndex({ setBackdrop }) {
   useEffect(() => {
     getAllNotes();
   }, [filterBy]);
-
-  useEffect(() => {
-    setBackdrop(isAdd);
-  }, [isAdd]);
 
   function getAllNotes() {
     noteService.query(filterBy).then((res) => {
@@ -47,6 +42,7 @@ export function NoteIndex({ setBackdrop }) {
       ...prevNotes.slice(noteIdx + 1, prevNotes.length),
     ]);
   }
+
   function onSetFilterBy(filterBy) {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
@@ -59,10 +55,6 @@ export function NoteIndex({ setBackdrop }) {
   if (!notes) return <div>Loading...</div>;
   return (
     <div className={"note-index"}>
-      <div
-        className={`backdrop-${dynClass}`}
-        onClick={() => setIsAdd(false)}
-      ></div>
       <div className={"note-header flex"}>
         <h1>Appsus Keep</h1>
         <div>
