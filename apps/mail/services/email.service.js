@@ -74,7 +74,7 @@ function _createEmails() {
     let emails = utilService.loadFromStorage(emails_KEY)
     if (!emails || !emails.length) {
         emails = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 100; i++) {
             emails.push(_createEmail())
         }
         emails.push(_createEmail('user'))

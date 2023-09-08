@@ -21,7 +21,7 @@ export function EmailList({ emails, onStar, onRemove }) {
 
     function handleResize() {
         const screenWidth = window.innerWidth
-        setBodeSize((screenWidth-680)/6)
+        setBodeSize((screenWidth-840)/6)
     }
 
 
@@ -44,7 +44,7 @@ export function EmailList({ emails, onStar, onRemove }) {
                             <td>{from}</td>
                             <td>{subject}</td>
                             <td>
-                                <LongTxt txt={body} length ={bodeSize} showMore = {false}></LongTxt>
+                                {body &&<LongTxt txt={body} length ={bodeSize} showMore = {false}></LongTxt>}
                             </td>
                             <td>{sentAt}</td>
                             <td className="tool-tr">

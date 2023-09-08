@@ -7,8 +7,21 @@
     background-color: white;
     height: max-content;
     font-size: 13px;
-    width: 90%;
+    min-width: 90%;
+    height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+.email-list::-webkit-scrollbar {
+    position: absolute;
+    width: 12px; 
+}
+
+.email-list.email-list::-webkit-scrollbar-thumb {
+    background: rgb(204,204,204); 
+}
+
 
 .email-list table {
     border-collapse: collapse;
@@ -19,6 +32,8 @@
 }
 
 .email-list table td {
+    page-break-inside: avoid;
+    width:max-content;
     border-bottom: .5px solid lightgrey;
     cursor: pointer;
     padding-block: 8px;
@@ -63,9 +78,11 @@
 
 .email-list .delete-btn {
     position: absolute;
-    right: -10px;
-    top: 0px;
-    width: 50px;
+    padding: 0;
+    right: 0px;
+    top: 10px;
+    width: 30px;
     display: none;
+    background-color: white;
 }
 

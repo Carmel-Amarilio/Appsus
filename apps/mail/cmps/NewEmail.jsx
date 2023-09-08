@@ -2,6 +2,8 @@ const { useState, useEffect } = React
 
 export function NewEmail({ onClose ,onSend}) {
     const [newEmail, setNewEmail] = useState({})
+    const [isMinimize, setIsMinimize] = useState(false)
+    const [isFullScreen, setIsFullScreen] = useState(false)
 
     function handleChange({ target }) {
         const field = target.name
@@ -9,13 +11,20 @@ export function NewEmail({ onClose ,onSend}) {
         setNewEmail(prevEmail => ({ ...prevEmail, [field]: val }));
     }
 
+    function toggleMinimize(){
+        setIsMinimize(!isMinimize)
+    }
+    function toggleFullScreen(){
+        setIsFullScreen(!isFullScreen)
+    }
+
     return (
-        <section className="new-email flex column">
-            <section className="header flex align-center space-between">
+        <section className={`new-email flex column ${isMinimize? "minimize":"" } ${isFullScreen? "full-screen":""}`}>
+            <section onClick={toggleMinimize} className="header flex align-center space-between">
                 <p>New Message</p>
                 <span >
-                    <button><i className="fa-solid fa-minus"></i></button>
-                    <button><i className="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+                    <button onClick={toggleMinimize}><i className="fa-solid fa-minus"></i></button>
+                    <button  onClick={toggleFullScreen}><i className="fa-solid fa-up-right-and-down-left-from-center"></i></button>
                     <button onClick={onClose}><i className="fa-solid fa-x"></i></button>
                 </span>
             </section>
