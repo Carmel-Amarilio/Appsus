@@ -5,6 +5,7 @@
     height: 100vh;
     width: 90px;
     transition: 200ms;
+    
 }
 
 .email-filter:hover, .email-filter.open {
@@ -16,7 +17,7 @@
     border-end-end-radius: 20px;
     border-start-end-radius: 20px;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     width: max-content;
 }
 

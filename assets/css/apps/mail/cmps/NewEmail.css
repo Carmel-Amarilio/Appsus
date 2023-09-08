@@ -1,6 +1,6 @@
 .new-email {
     position: fixed;
-    bottom: 0;
+    bottom: 050px;
     right: 0;
     z-index: 10;
     height: 450px;
@@ -16,6 +16,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 5px;
+    height: 10%;
 }
 
 .new-email p {
@@ -31,18 +32,37 @@
     padding: 5px;
 }
 
-.new-email .input-contener{
+.new-email .input-contener {
     padding: 10px;
+    height: 75%;
 }
 
-.new-email input{
+.new-email .input-contener input {
     width: 100%;
     padding: 10px;
     border-bottom: rgba(223, 222, 222, 0.815) solid 1px;
 }
 
-.new-email input:focus {
-    outline: none; 
-    border: none;  
+.new-email .input-contener input:focus {
+    outline: none;
+    border: none;
     border-bottom: rgba(223, 222, 222, 0.815) solid 1px;
-  }
+}
+
+.new-email .input-contener textarea {
+    width: 100%;
+    height: 75%;
+    outline: none;
+    border: none; 
+    resize: none;
+}
+
+.new-email .footer{
+    padding: 10px;
+}
+.new-email .footer button{
+    width: 70px;
+    background-color: rgb(11,87,208);
+    color: white;
+    border-radius: 50px;
+}

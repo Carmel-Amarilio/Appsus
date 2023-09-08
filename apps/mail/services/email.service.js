@@ -17,17 +17,16 @@ export const emailService = {
     getUser,
 }
 
-function query(filterBy) {
+function query(search) {
     return storageService.query(emails_KEY)
         .then(emails => {
-            // if (filterBy.txt) {
-            //   const regex = new RegExp(filterBy.txt, 'i')
-            //   emails = emails.filter(email => regex.test(email.title))
-            // }
-            // if (filterBy.minPrice) {
-            //   emails = emails.filter(email => email.listPrice.amount >= filterBy.minPrice)
-            // }
-
+              const regex = new RegExp(search, 'i')
+              emails = emails.filter(email =>
+                 regex.test(email.subject)||
+                 regex.test(email.body)||
+                 regex.test(email.from)||
+                 regex.test(email.to)
+                 )
             return emails
         })
 }

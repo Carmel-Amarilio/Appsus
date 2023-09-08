@@ -1,6 +1,13 @@
 const { Link } = ReactRouterDOM
 
-export function EmailHeader({ onToggleFilter }) {
+export function EmailHeader({ onToggleFilter, onSearch }) {
+
+    function handleChange({ target }) {
+        let val = target.value
+        onSearch(val)
+        // setNewEmail(prevEmail => ({ ...prevEmail, [field]: val }));
+    }
+
     return (
         <section className="email-header flex align-center">
             <button onClick={onToggleFilter}><img src="../../assets/icons/hamburger.png" /></button>
@@ -12,7 +19,7 @@ export function EmailHeader({ onToggleFilter }) {
             </div>
             <label htmlFor="txt" className="search-sec flex align-center">
                 <button><img src="../../assets/icons/search.png" /></button>
-                <input type="text" placeholder="Search mail" id="txt" name="txt" />
+                <input onChange={handleChange} type="text" placeholder="Search mail" />
             </label>
         </section>
     )
