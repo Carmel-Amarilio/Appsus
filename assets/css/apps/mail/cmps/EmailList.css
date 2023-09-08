@@ -52,6 +52,7 @@
 }
 
 .email-list .star-btn,
+.email-list .read-btn,
 .email-list .delete-btn {
     padding: 10px;
 }
@@ -61,6 +62,7 @@
 }
 
 .email-list .star-btn:hover,
+.email-list .read-btn:hover,
 .email-list .delete-btn:hover {
     background-color: var(--mail-bg-color-hover);
     border-radius: 50%;
@@ -73,17 +75,17 @@
     font-size: 20px;
 }
 
-.email-list table tr:hover .delete-btn {
-    display: inline;
+.email-list table tr:hover .tool-tr {
+    right: 0px;
 }
 
-.email-list .delete-btn {
+.email-list .tool-tr {
     position: absolute;
-    padding: 0;
-    right: 0px;
-    top: 15px;
-    width: 20px;
-    display: none;
+    padding: 2px;
+    right: -100px;
+    top: 4px;
     background-color: white;
+    border: 0;
+    transition: 100ms;
 }
 

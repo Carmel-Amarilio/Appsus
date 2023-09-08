@@ -13,13 +13,14 @@ export function EmailIndex() {
     const [emails, setEmails] = useState(null)
     const [emailsMap, setEmailsMap] = useState({ unReadCount: null, draftCount: null })
     const [filterBy, setFilterBy] = useState('inbox')
+    const [sort, setSort] = useState({ from: false, data: false, unread: false })
     const [searchBy, setSearchBy] = useState('')
     const [isNewEmail, setIsNewEmail] = useState(false)
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [currDraft, setCurrDraft] = useState({})
     const params = useParams()
 
-    useEffect(updateEmails, [params.filter, searchBy])
+    useEffect(updateEmails, [params.filter, searchBy, sort])
 
     function updateEmails() {
         const { email: userAddress } = emailService.getUser()
@@ -27,7 +28,7 @@ export function EmailIndex() {
         emailService.query(searchBy).then(emails => {
             const unReadCount = emails.filter(email => !email.isRead && email.from !== userAddress && !email.removedAt && !email.isDraft).length
             const draftCount = emails.filter(email => email.isDraft && !email.removedAt).length
-            setEmailsMap({unReadCount, draftCount})
+            setEmailsMap({ unReadCount, draftCount })
             switch (params.filter) {
                 case 'inbox':
                     emails = emails.filter(email => email.from !== userAddress && !email.removedAt && !email.isDraft)
@@ -48,9 +49,16 @@ export function EmailIndex() {
                 default:
                     break
             }
+            console.log(sort);
+            if (sort.from) emails = emails.sort((e1, e2) => e1.from.localeCompare(e2.from))
+            if (sort.data) emails = emails.sort((e1, e2) => e1.body.localeCompare(e2.body))
+            if (sort.unread) emails = emails.sort((e1, e2) => e1.isRead === e2.isRead ? 0 : e1.isRead ? 1 : -1)
             setEmails(emails)
         })
 
+    }
+    function onSort(sort){
+        setSort(sort)
     }
 
     function onStar(email) {
@@ -114,6 +122,11 @@ export function EmailIndex() {
         } else emailService.remove(email.id).then(updateEmails)
     }
 
+    function onToggleRead(email) {
+        email.isRead = !email.isRead
+        emailService.save(email).then(updateEmails)
+    }
+
     function onSearch(search) {
         setSearchBy(search)
     }
@@ -121,10 +134,10 @@ export function EmailIndex() {
 
     return (
         <section className="email-index">
-            <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} />
+            <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} onSort={onSort}/>
             <div className="flex">
-                <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} emailsMap={emailsMap}/>
-                {!params.emailId && <EmailList emails={emails} onStar={onStar} onRemove={onRemove} onDraft={onDraft} isDisplayTo={(filterBy === 'send' || filterBy === 'draft' ? true : false)} />}
+                <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} emailsMap={emailsMap} />
+                {!params.emailId && <EmailList emails={emails} onStar={onStar} onRemove={onRemove} onToggleRead={onToggleRead} onDraft={onDraft} isDisplayTo={(filterBy === 'send' || filterBy === 'draft' ? true : false)} />}
                 {params.emailId && <EmailData onStar={onStar} onRemove={onRemove} />}
 
             </div>

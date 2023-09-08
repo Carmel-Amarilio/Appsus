@@ -3,7 +3,7 @@ const { useState, useEffect } = React
 
 import { LongTxt } from "../../../cmps/LongTxt.jsx";
 
-export function EmailList({ emails, onStar, onRemove, onDraft, isDisplayTo }) {
+export function EmailList({ emails, onStar, onRemove, onToggleRead, onDraft, isDisplayTo }) {
     const navigate = useNavigate()
     const [bodeSize, setBodeSize] = useState(null)
 
@@ -21,7 +21,7 @@ export function EmailList({ emails, onStar, onRemove, onDraft, isDisplayTo }) {
 
     function handleResize() {
         const screenWidth = window.innerWidth
-        setBodeSize((screenWidth-840)/6)
+        setBodeSize((screenWidth - 840) / 6)
     }
 
 
@@ -32,23 +32,28 @@ export function EmailList({ emails, onStar, onRemove, onDraft, isDisplayTo }) {
             <table>
                 <tbody>
                     {emails.map(email => {
-                        const { id, from, to, subject, body, sentAt, isRead, isStar ,isDraft} = email
-                        return < tr className={isRead ? 'read' : ''} key={id} onClick={() =>isDraft? onDraft(email):onOpen(id)}>
+                        const { id, from, to, subject, body, sentAt, isRead, isStar, isDraft } = email
+                        return < tr className={isRead ? 'read' : ''} key={id} onClick={() => isDraft ? onDraft(email) : onOpen(id)}>
                             <td>
                                 <button onClick={(e) => { e.stopPropagation(); onStar(email) }} className={'star-btn ' + (isStar && 'starred')}>
                                     {isStar && <i className="fa-solid fa-star"></i>}
                                     {!isStar && <i className="fa-regular fa-star"></i>}
                                 </button>
                             </td>
-                            <td>{isDisplayTo? to: from}</td>
+                            <td>{isDisplayTo ? to : from}</td>
                             <td>{subject}</td>
                             <td>
-                                {body &&<LongTxt txt={body} length ={bodeSize} showMore = {false}></LongTxt>}
+                                {body && <LongTxt txt={body} length={bodeSize} showMore={false}></LongTxt>}
                             </td>
                             <td>{sentAt}</td>
-                            <td className="tool-tr">
+                            <td className="tool-tr flex ">
+                                <button className="read-btn" onClick={(e) => { e.stopPropagation(); onToggleRead(email) }}>
+                                    {!isRead && <i className="fa-regular fa-envelope-open"></i>}
+                                    {isRead &&<i className="fa-regular fa-envelope"></i>}
+                                </button>
                                 <button className="delete-btn" onClick={(e) => { e.stopPropagation(); onRemove(email) }}>
-                                    <img src="../../assets/icons/delete.png" />
+                                    {/* <img src="../../assets/icons/delete.png" /> */}
+                                    <i className="fa-solid fa-trash-can"></i>
                                 </button>
                             </td>
                         </tr>

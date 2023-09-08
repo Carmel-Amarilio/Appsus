@@ -31,5 +31,23 @@
     border: none;  
   }
 
+  .email-header .sort input[type="checkbox"] {
+    display: none; 
+    background-color: white;
+}
+
+
+  .email-header .sort label {
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px lightgray solid;
+    margin-inline: 5px;
+}
+  .email-header .sort label >* {
+    margin-inline: 5px;
+}
+
+
 
   
