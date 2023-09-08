@@ -1,6 +1,6 @@
 const { useState } = React;
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt, length = 100, showMore = true }) {
   const [isShowMore, setIsShowMore] = useState(false);
 
   function handleClick() {
@@ -19,9 +19,9 @@ export function LongTxt({ txt, length = 100 }) {
     <div>
       {getTxtToShow()}
       {txt.length > length && (
-        <button className={"show-more"} onClick={handleClick}>
+       (showMore && <button className={"show-more"} onClick={handleClick}>
           {!isShowMore ? "Show More" : "Show Less"}
-        </button>
+        </button>)
       )}
     </div>
   );

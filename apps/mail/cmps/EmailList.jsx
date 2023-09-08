@@ -1,13 +1,31 @@
 const { useNavigate } = ReactRouterDOM
+const { useState, useEffect } = React
+
+import { LongTxt } from "../../../cmps/LongTxt.jsx";
 
 export function EmailList({ emails, onStar, onRemove }) {
     const navigate = useNavigate()
+    const [bodeSize, setBodeSize] = useState(null)
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        handleResize()
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }
+    }, [])
 
     function onOpen(id) {
         navigate(`${id}`)
     }
 
-    console.log(emails);
+    function handleResize() {
+        const screenWidth = window.innerWidth
+        setBodeSize((screenWidth-680)/6)
+    }
+
+
+    // console.log(emails);
     if (!emails) return <div className="list-msg">loading...</div>
     if (!emails.length) return <div className="list-msg">No Emails</div>
     return (
@@ -25,7 +43,9 @@ export function EmailList({ emails, onStar, onRemove }) {
                             </td>
                             <td>{from}</td>
                             <td>{subject}</td>
-                            <td>{body}</td>
+                            <td>
+                                <LongTxt txt={body} length ={bodeSize} showMore = {false}></LongTxt>
+                            </td>
                             <td>{sentAt}</td>
                             <td className="tool-tr">
                                 <button className="delete-btn" onClick={(e) => { e.stopPropagation(); onRemove(email) }}>
