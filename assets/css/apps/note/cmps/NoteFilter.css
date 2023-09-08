@@ -1,21 +1,24 @@
 .search-bar {
-  background-color: var(--grey2);
+  background-color: var(--gray1);
   border: 0;
   border-radius: 5px;
-  justify-self: center;
+  width: 40vw;
+  align-self: center;
 }
 
 .search-bar form {
-  background-color: var(--grey2);
+  background-color: var(--gray1);
+  width: 100%;
 }
 
 .search-bar input {
-  background-color: var(--grey2);
+  background-color: var(--gray1);
+  width: 95%;
 }
 
 .search-bar button {
   padding: 10px;
-  background-color: var(--grey2);
+  background-color: var(--gray1);
   border: 0;
   border-radius: 50%;
 }

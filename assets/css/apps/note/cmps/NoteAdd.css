@@ -10,29 +10,42 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 }
 
-.note-add button {
+.note-add-button {
   padding: 10px;
   background-color: #fff;
   border: 0;
   border-radius: 50%;
 }
-.note-add button:hover {
+.note-add-button:hover {
   background-color: var(--mail-bg-color-hover);
   cursor: pointer;
 }
-.note-add button img {
+.note-add-button img {
   width: 1rem;
 }
 
 .note-add-popup {
+  position: absolute;
+  background-color: #fff;
+  width: 60vw;
   border: 1px solid var(--gray1);
   border-radius: 5px;
+  padding: 20px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  z-index: 2;
+}
+
+.note-add-popup form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-end;
-  /* text-align: center; */
-  padding: 20px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+
+.note-add-popup input {
+  width: 100%;
+}
+.note-add-popup textarea {
+  width: 100%;
 }

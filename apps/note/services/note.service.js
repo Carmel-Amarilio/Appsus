@@ -53,8 +53,8 @@ function save(note, isEdit) {
 function getAll() {
   return storageService.get(NOTE_KEY);
 }
-function getEmptyNote(vendor = "", maxSpeed = "") {
-  return { vendor, maxSpeed };
+function getEmptyNote(title = "", txt = "") {
+  return createNote(new Date(), title, txt);
 }
 
 function getDefaultFilter() {

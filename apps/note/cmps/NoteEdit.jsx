@@ -1,8 +1,16 @@
 const { useState, useEffect } = React;
 import { noteService } from "../services/note.service.js";
-export function NoteAdd({ onNoteAdded }) {
-  const [newNote, setNewNote] = useState({ title: "", txt: "" });
-  const { title, txt } = newNote;
+export function NoteEdit({ noteId, onNoteEdit }) {
+  const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote());
+  const { info } = noteToEdit;
+
+  useEffect(() => {
+    getNoteToEdit();
+  }, []);
+
+  async function getNoteToEdit() {
+    setNoteToEdit(await noteService.get(noteId));
+  }
 
   function handleChange({ target }) {
     const field = target.name;
@@ -11,7 +19,7 @@ export function NoteAdd({ onNoteAdded }) {
     switch (target.type) {
       case "number":
       case "range":
-        value = value || 0;
+        value = +value || "";
         break;
 
       case "checkbox":
@@ -21,30 +29,31 @@ export function NoteAdd({ onNoteAdded }) {
       default:
         break;
     }
-
-    setNewNote((prevNewNote) => ({ ...prevNewNote, [field]: value }));
+    setNoteToEdit((prevNoteToEdit) => {
+      const newNoteToEdit = { ...prevNoteToEdit };
+      newNoteToEdit.info[field] = value;
+      return newNoteToEdit;
+    });
   }
-  function onSaveNote() {
-    const note = noteService.createNote(new Date(), title, txt);
-    setNewNote(note);
-    console.log(note);
+
+  function onSaveNote(note) {
     noteService
-      .save(note, false)
-      .then(() => onNoteAdded())
+      .save(note, true)
+      .then((newNote) => onNoteEdit(newNote))
       .catch((err) => console.log("err:", err));
   }
 
   return (
-    <div className={"note-add-popup"}>
+    <div className={"note-edit flex"}>
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
-          onSaveNote();
+          onSaveNote(noteToEdit);
         }}
       >
         <input
           onChange={handleChange}
-          value={title}
+          value={info.title}
           placeholder="title"
           type="text"
           name="title"
@@ -52,7 +61,7 @@ export function NoteAdd({ onNoteAdded }) {
         />
         <textarea
           onChange={handleChange}
-          value={txt}
+          value={info.txt}
           placeholder="note"
           type="text"
           name="txt"

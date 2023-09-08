@@ -4,10 +4,11 @@ import { NoteList } from "../cmps/NoteList.jsx";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { NoteFilter } from "../cmps/NoteFilter.jsx";
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
-export function NoteIndex() {
+export function NoteIndex({ setBackdrop }) {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
   const [isAdd, setIsAdd] = useState(false);
+  const dynClass = isAdd ? "on" : "off";
 
   useEffect(() => {
     getAllNotes();
@@ -15,8 +16,11 @@ export function NoteIndex() {
 
   useEffect(() => {
     getAllNotes();
-    console.log(filterBy);
   }, [filterBy]);
+
+  useEffect(() => {
+    setBackdrop(isAdd);
+  }, [isAdd]);
 
   function getAllNotes() {
     noteService.query(filterBy).then((res) => {
@@ -35,18 +39,30 @@ export function NoteIndex() {
         showErrorMsg("Problem Removing " + noteId);
       });
   }
+  function onEditNote(note) {
+    const noteIdx = notes.findIndex((noteItem) => noteItem.id === note.id);
+    setNotes((prevNotes) => [
+      ...prevNotes.slice(0, noteIdx),
+      note,
+      ...prevNotes.slice(noteIdx + 1, prevNotes.length),
+    ]);
+  }
   function onSetFilterBy(filterBy) {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
   function handleNoteAdded() {
     getAllNotes();
-    // setIsAdd(false);
+    setIsAdd(false);
   }
 
   if (!notes) return <div>Loading...</div>;
   return (
     <div className={"note-index"}>
+      <div
+        className={`backdrop-${dynClass}`}
+        onClick={() => setIsAdd(false)}
+      ></div>
       <div className={"note-header flex"}>
         <h1>Appsus Keep</h1>
         <div>
@@ -61,28 +77,30 @@ export function NoteIndex() {
         className={"note-add flex"}
         onClick={() => {
           setIsAdd(true);
-          console.log(isAdd);
         }}
       >
         <p>Add a note</p>
         <div>
-          <button>
+          <button className={"note-add-button"}>
             <img
               src={"assets/icons/check_box_FILL0_wght400_GRAD0_opsz24.png"}
               alt=""
             />
           </button>
-          <button>
+          <button className={"note-add-button"}>
             <img
               src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
               alt=""
             />
           </button>
         </div>
-        {console.log(isAdd)}
-        {isAdd && <NoteAdd onNoteAdded={handleNoteAdded}></NoteAdd>}
       </div>
-      <NoteList notes={notes} onRemoveNote={onRemoveNote}></NoteList>
+      {isAdd && <NoteAdd onNoteAdded={handleNoteAdded}></NoteAdd>}
+      <NoteList
+        notes={notes}
+        onRemoveNote={onRemoveNote}
+        onEditNote={onEditNote}
+      ></NoteList>
     </div>
   );
 }
