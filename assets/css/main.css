@@ -30,6 +30,7 @@
 
 /* Cmps */
 
+@import "./apps/note/cmps/ColorPicker.css";
 @import "./cmps/UserMsg.css";
 @import "./cmps/AppHeader.css";
 @import "./cmps/LongTxt.css";

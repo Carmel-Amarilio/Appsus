@@ -4,6 +4,7 @@ import { NoteList } from "../cmps/NoteList.jsx";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { NoteFilter } from "../cmps/NoteFilter.jsx";
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
+import { ColorPicker } from "../cmps/ColorPicker.jsx";
 export function NoteIndex() {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
@@ -18,8 +19,8 @@ export function NoteIndex() {
     getAllNotes();
   }, [filterBy]);
 
-  function getAllNotes() {
-    noteService.query(filterBy).then((res) => {
+  async function getAllNotes() {
+    await noteService.query(filterBy).then((res) => {
       setNotes(res);
     });
   }
@@ -51,6 +52,11 @@ export function NoteIndex() {
   function handleNoteAdded() {
     getAllNotes();
     setIsAdd(false);
+  }
+  async function onColorPicked(color, idx) {
+    const note = { ...notes[idx], style: { backgroundColor: color } };
+    onEditNote(note);
+    await noteService.save(note, true);
   }
 
   if (!notes) return <div>Loading...</div>;
@@ -89,18 +95,20 @@ export function NoteIndex() {
             </button>
           </div>
         </div>
+        {isAdd && (
+          <NoteAdd
+            onNoteAdded={handleNoteAdded}
+            isAdd={isAdd}
+            setIsAdd={setIsAdd}
+          ></NoteAdd>
+        )}
       </div>
-      {isAdd && (
-        <NoteAdd
-          onNoteAdded={handleNoteAdded}
-          isAdd={isAdd}
-          setIsAdd={setIsAdd}
-        ></NoteAdd>
-      )}
+
       <NoteList
         notes={notes}
         onRemoveNote={onRemoveNote}
         onEditNote={onEditNote}
+        onColorPicked={onColorPicked}
       ></NoteList>
     </div>
   );

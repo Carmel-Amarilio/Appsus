@@ -2,24 +2,36 @@ const { useState, Fragment } = React;
 import { NotePreview } from "./NotePreview.jsx";
 import { NoteEdit } from "./NoteEdit.jsx";
 import { Backdrop } from "./Backdrop.jsx";
+import { ColorPicker } from "./ColorPicker.jsx";
 
-export function NoteList({ notes, onRemoveNote, onEditNote }) {
+export function NoteList({ notes, onRemoveNote, onEditNote, onColorPicked }) {
   const [noteEditOpened, setNoteEditOpened] = useState(null);
+  const [colorPickerOpen, setColorPickerOpen] = useState(null);
+  const [isPinned, setIsPinned] = useState(false);
 
   return (
     <ul className="note-list clean-list">
       {notes.map((note, idx) => {
         return (
-          <li key={idx} className="note-card">
+          <li
+            key={idx}
+            className="note-card"
+            style={{ backgroundColor: note.style.backgroundColor }}
+          >
             <button className={"list-button"}>
               <img
                 src={"assets/icons/push_pin_FILL0_wght400_GRAD0_opsz24.png"}
-                alt="Delete"
+                alt="Pin to start"
               />
             </button>
             <NotePreview note={note}></NotePreview>
             <section className="list-button-nav flex ">
-              <button className={"list-button"}>
+              <button
+                className={"list-button"}
+                onClick={() =>
+                  setColorPickerOpen((prev) => (prev === idx ? null : idx))
+                }
+              >
                 <img
                   src={"assets/icons/palette_FILL0_wght400_GRAD0_opsz24.png"}
                   alt="Change background"
@@ -37,7 +49,6 @@ export function NoteList({ notes, onRemoveNote, onEditNote }) {
                   setNoteEditOpened((prev) =>
                     prev != null && prev === idx ? null : idx
                   );
-                  setIsBackdrop(true);
                 }}
               >
                 <img
@@ -66,11 +77,23 @@ export function NoteList({ notes, onRemoveNote, onEditNote }) {
                     onEditNote(note);
                   }}
                 ></NoteEdit>
-                <Backdrop
-                  isBackdrop={noteEditOpened != null}
-                  setIsBackdrop={() => setNoteEditOpened(null)}
-                ></Backdrop>
+                <Backdrop onBackdropClose={setNoteEditOpened}></Backdrop>
               </Fragment>
+            )}
+
+            {colorPickerOpen === idx && (
+              <ColorPicker
+                colors={[
+                  "#FFF8B8",
+                  "#FAAFA7",
+                  "#D4E3ED",
+                  "#E2F5D3",
+                  "#D3BFDB",
+                  "#F6E2DD",
+                  "#FFFFFF",
+                ]}
+                onColorPicked={(color) => onColorPicked(color, idx)}
+              ></ColorPicker>
             )}
           </li>
         );

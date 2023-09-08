@@ -14,4 +14,9 @@
 
   /* notes */
   --notes-menu-hover: rgb(253, 239, 195);
+
+  /* color-picker */
+  --color-picker-pink: rgb(250, 175, 167);
+  --color-picker-blue: rgb(174, 204, 220);
+  --color-picker-yellow: rgb(255, 248, 184);
 }

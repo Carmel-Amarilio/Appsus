@@ -19,6 +19,7 @@
   justify-content: space-around;
   align-items: flex-end;
   padding: 20px;
+  transition: background-color 400ms ease-in-out;
 }
 
 .list-button {

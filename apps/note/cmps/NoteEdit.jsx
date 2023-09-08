@@ -47,7 +47,7 @@ export function NoteEdit({ noteId, onNoteEdit, onNoteEdited }) {
   }
 
   return (
-    <div className={"note-edit "}>
+    <div className={`note-edit`}>
       <form
         onSubmit={(ev) => {
           ev.preventDefault();

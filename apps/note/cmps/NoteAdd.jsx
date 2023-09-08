@@ -36,33 +36,36 @@ export function NoteAdd({ onNoteAdded, isAdd, setIsAdd }) {
 
   return (
     <div className={"note-add-popup"}>
-      <div className={"flex justify-end "}>
-        <button
-          className={"list-button "}
-          onClick={() => {
-            setIsAdd(!isAdd);
-          }}
-        >
-          <img
-            src={"assets/icons/close_FILL0_wght400_GRAD0_opsz24.png"}
-            alt=""
-          />
-        </button>
-      </div>
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
           onSaveNote();
         }}
       >
-        <input
-          onChange={handleChange}
-          value={title}
-          placeholder="Title"
-          type="text"
-          name="title"
-          id="title"
-        />
+        <div className={"flex space-around align-center"}>
+          <input
+            onChange={handleChange}
+            value={title}
+            placeholder="Title"
+            type="text"
+            name="title"
+            id="title"
+          />
+          <span>
+            <button
+              className={"list-button"}
+              onClick={() => {
+                setIsAdd(!isAdd);
+              }}
+            >
+              <img
+                src={"assets/icons/close_FILL0_wght400_GRAD0_opsz24.png"}
+                alt=""
+              />
+            </button>
+          </span>
+        </div>
+
         <textarea
           onChange={handleChange}
           value={txt}

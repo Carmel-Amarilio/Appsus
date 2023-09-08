@@ -1,19 +1,18 @@
 const { useEffect } = React;
-export function Backdrop({ isBackdrop, setIsBackdrop }) {
-  const dynClass = isBackdrop ? "on" : "off";
+export function Backdrop({ onBackdropClose }) {
+  const classList = document.body.classList;
 
   useEffect(() => {
-    const classList = document.body.classList;
-
-    isBackdrop
-      ? classList.add("overflow-none")
-      : classList.remove("overflow-none");
-  }, [isBackdrop]);
+    classList.add("overflow-none");
+  }, []);
 
   return (
     <div
-      className={`backdrop-${dynClass}`}
-      onClick={() => setIsBackdrop(false)}
+      className={`backdrop-on`}
+      onClick={() => {
+        classList.remove("overflow-none");
+        onBackdropClose();
+      }}
     ></div>
   );
 }

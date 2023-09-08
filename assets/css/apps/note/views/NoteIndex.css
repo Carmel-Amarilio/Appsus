@@ -4,13 +4,14 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   z-index: 0;
   padding-inline: 24px;
-  padding-block-start: 30px;
+  padding-block-start: 8px;
 }
 
 .note-header {
   display: flex;
   align-items: center;
-  margin-block-end: 30px;
+  padding-block-end: 8px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .note-header h1 {
