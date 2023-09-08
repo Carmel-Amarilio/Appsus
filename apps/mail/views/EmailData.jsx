@@ -40,7 +40,7 @@ export function EmailData({ onStar, onRemove }) {
             <section className="email-text">
                 <h1>{subject}</h1>
                 <h3>{from}</h3>
-                <h4>{body}</h4>
+                <textarea disabled defaultValue={body}></textarea>
             </section>
         </section>
     )

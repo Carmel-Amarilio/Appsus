@@ -55,7 +55,6 @@ function save(email) {
 function saveDraft(newDraft, draftId) {
     let emails = utilService.loadFromStorage(emails_KEY)
     const draft = emails.filter(email => email.id === draftId)
-    console.log(draft.length, draftId, draft);
     if (draft.length) {
         return storageService.put(emails_KEY, newDraft )
     } else {

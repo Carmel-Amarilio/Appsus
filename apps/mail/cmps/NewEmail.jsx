@@ -3,7 +3,7 @@ import { utilService } from '../../../services/util.service.js'
 const { useState, useEffect, useRef } = React
 
 export function NewEmail({ onClose, onSend, saveDraft, draft }) {
-    const [newEmail, setNewEmail] = useState({ subject: draft.subject, body: draft.body, to: draft.to })
+    const [newEmail, setNewEmail] = useState({ subject: draft.subject||'', body: draft.body||'', to: draft.to||'' })
     const [isMinimize, setIsMinimize] = useState(false)
     const [isFullScreen, setIsFullScreen] = useState(false)
     const intervalIdDraft = useRef()

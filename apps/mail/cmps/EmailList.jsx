@@ -25,7 +25,6 @@ export function EmailList({ emails, onStar, onRemove, onDraft, isDisplayTo }) {
     }
 
 
-    console.log(emails);
     if (!emails) return <div className="list-msg">loading...</div>
     if (!emails.length) return <div className="list-msg">No Emails</div>
     return (

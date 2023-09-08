@@ -12,11 +12,15 @@
 }
 
 .email-filter button {
+    position: relative;
     border-end-end-radius: 20px;
     border-start-end-radius: 20px;
     padding: 5px;
     margin-bottom: 10px;
     width: max-content;
+}
+.email-filter button:not(:first-child) {
+    width: 95%;
 }
 
 .email-filter button img {
@@ -61,4 +65,20 @@
 .email-filter.open button .text{
     display: inline;
     margin-inline: 10px;
+}
+
+.email-filter .draft-count, .email-filter .unread-count {
+    position: absolute;
+    right: 10px;
+    font-weight: bold;
+}
+
+.email-filter .sow-dot::before {
+    position: absolute;
+    content: "";
+    width: 8px; 
+    height: 8px; 
+    background-color:rgb(197,34,31);
+    border-radius: 50%; 
+    left: 60px
 }

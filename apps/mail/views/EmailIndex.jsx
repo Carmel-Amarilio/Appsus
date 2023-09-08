@@ -11,31 +11,35 @@ const { useParams } = ReactRouterDOM
 
 export function EmailIndex() {
     const [emails, setEmails] = useState(null)
+    const [emailsMap, setEmailsMap] = useState({ unReadCount: null, draftCount: null })
     const [filterBy, setFilterBy] = useState('inbox')
     const [searchBy, setSearchBy] = useState('')
     const [isNewEmail, setIsNewEmail] = useState(false)
     const [isFilterOpen, setIsFilterOpen] = useState(false)
-    const [currDraftId, setCurrDraftId] = useState('')
     const [currDraft, setCurrDraft] = useState({})
     const params = useParams()
 
-    useEffect(() => {
+    useEffect(updateEmails, [params.filter, searchBy])
+
+    function updateEmails() {
         const { email: userAddress } = emailService.getUser()
         setFilterBy(params.filter);
         emailService.query(searchBy).then(emails => {
-            console.log(emails);
+            const unReadCount = emails.filter(email => !email.isRead && email.from !== userAddress && !email.removedAt && !email.isDraft).length
+            const draftCount = emails.filter(email => email.isDraft && !email.removedAt).length
+            setEmailsMap({unReadCount, draftCount})
             switch (params.filter) {
                 case 'inbox':
                     emails = emails.filter(email => email.from !== userAddress && !email.removedAt && !email.isDraft)
                     break
                 case 'starred':
-                    emails = emails.filter(email => email.isStar && !email.removedAt )
+                    emails = emails.filter(email => email.isStar && !email.removedAt)
                     break
                 case 'send':
                     emails = emails.filter(email => email.from === userAddress && !email.removedAt && !email.isDraft)
                     break
                 case 'draft':
-                    emails = emails.filter(email => email.isDraft)
+                    emails = emails.filter(email => email.isDraft && !email.removedAt)
                     break
                 case 'remove':
                     emails = emails.filter(email => email.removedAt)
@@ -46,13 +50,12 @@ export function EmailIndex() {
             }
             setEmails(emails)
         })
-    }, [params.filter, searchBy])
+
+    }
 
     function onStar(email) {
         email.isStar = !email.isStar
-        emailService.save(email)
-        setEmails(prevEmail => prevEmail.map(em => em))
-        if (filterBy === 'starred') setEmails(emails.filter(email => email.isStar))
+        emailService.save(email).then(updateEmails)
     }
 
     function onToggleFilter() {
@@ -77,7 +80,7 @@ export function EmailIndex() {
             from,
             to
         }
-        emailService.save(email)
+        emailService.save(email).then(updateEmails)
         onToggleNewEmail()
     }
 
@@ -98,8 +101,8 @@ export function EmailIndex() {
         }
         emailService.saveDraft(draft, draftId)
     }
-    
-    function onDraft(draft){
+
+    function onDraft(draft) {
         setCurrDraft(draft)
         setIsNewEmail(true)
     }
@@ -107,8 +110,8 @@ export function EmailIndex() {
     function onRemove(email) {
         if (!email.removedAt) {
             email.removedAt = Date.now()
-            emailService.save(email)
-        } else emailService.remove(email.id)
+            emailService.save(email).then(updateEmails)
+        } else emailService.remove(email.id).then(updateEmails)
     }
 
     function onSearch(search) {
@@ -120,7 +123,7 @@ export function EmailIndex() {
         <section className="email-index">
             <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} />
             <div className="flex">
-                <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} />
+                <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} emailsMap={emailsMap}/>
                 {!params.emailId && <EmailList emails={emails} onStar={onStar} onRemove={onRemove} onDraft={onDraft} isDisplayTo={(filterBy === 'send' || filterBy === 'draft' ? true : false)} />}
                 {params.emailId && <EmailData onStar={onStar} onRemove={onRemove} />}
 

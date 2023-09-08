@@ -1,15 +1,19 @@
 const { Link } = ReactRouterDOM
-export function EmailsFilter({ onNewEmail, filterBy, isOpen }) {
+export function EmailsFilter({ onNewEmail, filterBy, isOpen, emailsMap }) {
+
+    const { unReadCount, draftCount } = emailsMap
     return (
         <section className={"email-filter flex column " + (isOpen && 'open')}>
             <button onClick={onNewEmail} className="new-email-icn flex align-center">
                 <img src="../../assets/icons/pen.png" />
                 <span className="text">Compose</span>
             </button>
-            <button className={filterBy === 'inbox' ? 'select' : ''}>
+            <button className={` ${filterBy === 'inbox' ? 'select' : ''} ${unReadCount > 0 ? 'sow-dot' : ''}`}>
                 <Link to={`/email/inbox`} className="flex align-center">
                     <img src="../../assets/icons/inbox.png" />
-                    <span className="text">Inbox</span>
+                    <span className="text">Inbox
+                        {unReadCount > 0 && <span className="unread-count">{unReadCount}</span>}
+                    </span>
                 </Link>
             </button>
             <button className={filterBy === 'starred' ? 'select' : ''}>
@@ -24,10 +28,12 @@ export function EmailsFilter({ onNewEmail, filterBy, isOpen }) {
                     <span className="text">Send</span>
                 </Link>
             </button>
-            <button className={filterBy === 'draft' ? 'select' : ''}>
+            <button className={` ${filterBy === 'draft' ? 'select' : ''} ${draftCount > 0 ? 'sow-dot' : ''}`}>
                 <Link to={`/email/draft`} className="flex align-center">
                     <img src="../../assets/icons/draft.png" />
-                    <span className="text">Draft</span>
+                    <span className="text">Draft
+                        {draftCount > 0 && <span className="draft-count">{draftCount}</span>}
+                    </span>
                 </Link>
             </button>
             <button className={filterBy === 'remove' ? 'select' : ''}>
