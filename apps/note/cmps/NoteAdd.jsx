@@ -1,6 +1,6 @@
-const { useState, useEffect } = React;
+const { useState } = React;
 import { noteService } from "../services/note.service.js";
-export function NoteAdd({ onNoteAdded }) {
+export function NoteAdd({ onNoteAdded, isAdd, setIsAdd }) {
   const [newNote, setNewNote] = useState({ title: "", txt: "" });
   const { title, txt } = newNote;
 
@@ -36,6 +36,19 @@ export function NoteAdd({ onNoteAdded }) {
 
   return (
     <div className={"note-add-popup"}>
+      <div className={"flex justify-end "}>
+        <button
+          className={"list-button "}
+          onClick={() => {
+            setIsAdd(!isAdd);
+          }}
+        >
+          <img
+            src={"assets/icons/close_FILL0_wght400_GRAD0_opsz24.png"}
+            alt=""
+          />
+        </button>
+      </div>
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
@@ -45,7 +58,7 @@ export function NoteAdd({ onNoteAdded }) {
         <input
           onChange={handleChange}
           value={title}
-          placeholder="title"
+          placeholder="Title"
           type="text"
           name="title"
           id="title"
@@ -53,7 +66,7 @@ export function NoteAdd({ onNoteAdded }) {
         <textarea
           onChange={handleChange}
           value={txt}
-          placeholder="note"
+          placeholder="What is on your mind?"
           type="text"
           name="txt"
           id="txt"

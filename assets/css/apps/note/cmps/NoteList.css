@@ -6,25 +6,24 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
+  /* display: flex;
+  gap: 2em; */
 }
 
 .note-card {
-  width: fit-content;
-  border: 1px solid var(--gray1);
-  border-radius: 5px;
+  position: relative;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-end;
-  /* text-align: center; */
   padding: 20px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 }
 
 .list-button {
   padding: 10px;
-  background-color: #fff;
+  background-color: transparent;
   border: 0;
   border-radius: 50%;
 }

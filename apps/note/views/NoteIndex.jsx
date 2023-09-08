@@ -8,6 +8,7 @@ export function NoteIndex() {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
   const [isAdd, setIsAdd] = useState(false);
+  const dynClassAddDiv = isAdd ? "display-none" : "";
 
   useEffect(() => {
     getAllNotes();
@@ -56,7 +57,8 @@ export function NoteIndex() {
   return (
     <div className={"note-index"}>
       <div className={"note-header flex"}>
-        <h1>Appsus Keep</h1>
+        <img src={"assets/icons/icons8-google-keep-48 (1).png"} alt="" />
+        <h1>Keep</h1>
         <div>
           <NoteFilter
             filterBy={filterBy}
@@ -64,30 +66,37 @@ export function NoteIndex() {
           ></NoteFilter>
         </div>
       </div>
-
-      <div
-        className={"note-add flex"}
-        onClick={() => {
-          setIsAdd(true);
-        }}
-      >
-        <p>Add a note</p>
-        <div>
-          <button className={"note-add-button"}>
-            <img
-              src={"assets/icons/check_box_FILL0_wght400_GRAD0_opsz24.png"}
-              alt=""
-            />
-          </button>
-          <button className={"note-add-button"}>
-            <img
-              src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
-              alt=""
-            />
-          </button>
+      <div className={"flex justify-center note-add-container"}>
+        <div
+          className={`note-add flex ${dynClassAddDiv}`}
+          onClick={() => {
+            setIsAdd(true);
+          }}
+        >
+          <p>Add a note</p>
+          <div>
+            <button className={"note-add-button"}>
+              <img
+                src={"assets/icons/check_box_FILL0_wght400_GRAD0_opsz24.png"}
+                alt=""
+              />
+            </button>
+            <button className={"note-add-button"}>
+              <img
+                src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
+                alt=""
+              />
+            </button>
+          </div>
         </div>
       </div>
-      {isAdd && <NoteAdd onNoteAdded={handleNoteAdded}></NoteAdd>}
+      {isAdd && (
+        <NoteAdd
+          onNoteAdded={handleNoteAdded}
+          isAdd={isAdd}
+          setIsAdd={setIsAdd}
+        ></NoteAdd>
+      )}
       <NoteList
         notes={notes}
         onRemoveNote={onRemoveNote}
