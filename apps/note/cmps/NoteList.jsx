@@ -1,4 +1,4 @@
-const { useState } = React;
+const { useEffect, useState } = React;
 import { NoteCard } from "./NoteCard.jsx";
 
 export function NoteList({
@@ -8,6 +8,14 @@ export function NoteList({
   onColorPicked,
   onNotePin,
 }) {
+  // const [pinnedNotes, setPinnedNotes] = useState([]);
+  // const [unPinnedNotes, setUnPinnedNotes] = useState([]);
+
+  // useEffect(() => {
+  //   setUnPinnedNotes(notes.filter((note) => !note.isPinned));
+  //   setPinnedNotes(notes.filter((note) => note.isPinned));
+  // }, []);
+
   function onPinPress(note) {
     note.isPinned = !note.isPinned;
     onNotePin(note);

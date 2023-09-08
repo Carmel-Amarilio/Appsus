@@ -36,6 +36,10 @@ export function NoteIndex() {
         showErrorMsg("Problem Removing " + noteId);
       });
   }
+  async function onNotePin(note) {
+    await noteService.save(note, true);
+    onEditNote(note);
+  }
   function onEditNote(note) {
     const noteIdx = notes.findIndex((noteItem) => noteItem.id === note.id);
     setNotes((prevNotes) => [
@@ -109,6 +113,7 @@ export function NoteIndex() {
         onRemoveNote={onRemoveNote}
         onEditNote={onEditNote}
         onColorPicked={onColorPicked}
+        onNotePin={onNotePin}
       ></NoteList>
     </div>
   );
