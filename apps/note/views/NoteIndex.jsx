@@ -53,10 +53,10 @@ export function NoteIndex() {
     getAllNotes();
     setIsAdd(false);
   }
-  async function onColorPicked(color, idx) {
-    const note = { ...notes[idx], style: { backgroundColor: color } };
-    onEditNote(note);
-    await noteService.save(note, true);
+  async function onColorPicked(color, note) {
+    const newNote = { ...note, style: { backgroundColor: color } };
+    onEditNote(newNote);
+    await noteService.save(newNote, true);
   }
 
   if (!notes) return <div>Loading...</div>;
