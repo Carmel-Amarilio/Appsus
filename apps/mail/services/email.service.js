@@ -13,6 +13,7 @@ export const emailService = {
     get,
     remove,
     save,
+    saveDraft,
     getEmptyEmail,
     getUser,
 }
@@ -20,13 +21,13 @@ export const emailService = {
 function query(search) {
     return storageService.query(emails_KEY)
         .then(emails => {
-              const regex = new RegExp(search, 'i')
-              emails = emails.filter(email =>
-                 regex.test(email.subject)||
-                 regex.test(email.body)||
-                 regex.test(email.from)||
-                 regex.test(email.to)
-                 )
+            const regex = new RegExp(search, 'i')
+            emails = emails.filter(email =>
+                regex.test(email.subject) ||
+                regex.test(email.body) ||
+                regex.test(email.from) ||
+                regex.test(email.to)
+            )
             return emails
         })
 }
@@ -51,6 +52,17 @@ function save(email) {
     }
 }
 
+function saveDraft(newDraft, draftId) {
+    let emails = utilService.loadFromStorage(emails_KEY)
+    const draft = emails.filter(email => email.id === draftId)
+    console.log(draft.length, draftId, draft);
+    if (draft.length) {
+        return storageService.put(emails_KEY, newDraft )
+    } else {
+        return storageService.post(emails_KEY, newDraft, draftId)
+    }
+}
+
 function getEmptyEmail() {
     return {
         id: '',
@@ -65,7 +77,7 @@ function getEmptyEmail() {
     }
 }
 
-function getUser(){
+function getUser() {
     return loggedInUser
 }
 
@@ -74,13 +86,15 @@ function _createEmails() {
     let emails = utilService.loadFromStorage(emails_KEY)
     if (!emails || !emails.length) {
         emails = []
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 10; i++) {
             emails.push(_createEmail())
         }
         emails.push(_createEmail('user'))
         utilService.saveToStorage(emails_KEY, emails)
     }
-} function _createEmail(address = utilService.makeLorem(1)) {
+}
+
+function _createEmail(address = utilService.makeLorem(1)) {
     const email = getEmptyEmail()
     email.id = utilService.makeId()
     email.subject = utilService.makeLorem(3)

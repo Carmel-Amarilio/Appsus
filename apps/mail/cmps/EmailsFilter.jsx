@@ -24,6 +24,12 @@ export function EmailsFilter({ onNewEmail, filterBy, isOpen }) {
                     <span className="text">Send</span>
                 </Link>
             </button>
+            <button className={filterBy === 'draft' ? 'select' : ''}>
+                <Link to={`/email/draft`} className="flex align-center">
+                    <img src="../../assets/icons/draft.png" />
+                    <span className="text">Draft</span>
+                </Link>
+            </button>
             <button className={filterBy === 'remove' ? 'select' : ''}>
                 <Link to={`/email/remove`} className="flex align-center">
                     <img src="../../assets/icons/delete.png" />

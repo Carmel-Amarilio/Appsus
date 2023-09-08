@@ -21,6 +21,12 @@ export function EmailHeader({ onToggleFilter, onSearch }) {
                 <button><img src="../../assets/icons/search.png" /></button>
                 <input onChange={handleChange} type="text" placeholder="Search mail" />
             </label>
+            {/* <label for="dropdown">Sort:
+                <select id="dropdown">
+                    <option value="az">a-z</option>
+                    <option value="date">Date</option>
+                </select>
+            </label> */}
         </section>
     )
 }

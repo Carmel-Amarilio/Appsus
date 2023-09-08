@@ -3,7 +3,7 @@ const { useState, useEffect } = React
 
 import { LongTxt } from "../../../cmps/LongTxt.jsx";
 
-export function EmailList({ emails, onStar, onRemove }) {
+export function EmailList({ emails, onStar, onRemove, onDraft, isDisplayTo }) {
     const navigate = useNavigate()
     const [bodeSize, setBodeSize] = useState(null)
 
@@ -25,7 +25,7 @@ export function EmailList({ emails, onStar, onRemove }) {
     }
 
 
-    // console.log(emails);
+    console.log(emails);
     if (!emails) return <div className="list-msg">loading...</div>
     if (!emails.length) return <div className="list-msg">No Emails</div>
     return (
@@ -33,15 +33,15 @@ export function EmailList({ emails, onStar, onRemove }) {
             <table>
                 <tbody>
                     {emails.map(email => {
-                        const { id, from, subject, body, sentAt, isRead, isStar } = email
-                        return < tr className={isRead ? 'read' : ''} key={id} onClick={() => onOpen(id)}>
+                        const { id, from, to, subject, body, sentAt, isRead, isStar ,isDraft} = email
+                        return < tr className={isRead ? 'read' : ''} key={id} onClick={() =>isDraft? onDraft(email):onOpen(id)}>
                             <td>
                                 <button onClick={(e) => { e.stopPropagation(); onStar(email) }} className={'star-btn ' + (isStar && 'starred')}>
                                     {isStar && <i className="fa-solid fa-star"></i>}
                                     {!isStar && <i className="fa-regular fa-star"></i>}
                                 </button>
                             </td>
-                            <td>{from}</td>
+                            <td>{isDisplayTo? to: from}</td>
                             <td>{subject}</td>
                             <td>
                                 {body &&<LongTxt txt={body} length ={bodeSize} showMore = {false}></LongTxt>}
