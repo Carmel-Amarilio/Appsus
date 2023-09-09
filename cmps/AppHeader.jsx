@@ -1,7 +1,18 @@
 const { Link, NavLink } = ReactRouterDOM;
 import { UserMsg } from "./UserMsg.jsx";
 
+const { useState, useEffect } = React
 export function AppHeader() {
+  const [openNav, setOpenNav] = useState(false)
+
+  function onToggleMenu() {
+    setOpenNav(prev => !prev)
+  }
+
+  function onCloseMenu() {
+    setOpenNav(false)
+  }
+
   return (
     <header className="app-header flex justify-start align-center">
       <Link to="/">
@@ -11,11 +22,14 @@ export function AppHeader() {
         </div>
       </Link>
       <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/email/inbox">Mail</NavLink>
-        <NavLink to="/note">Note</NavLink>
-        <NavLink to="/book">Book</NavLink>
+        <section className={"main-nav-container "+ (openNav? 'open':'')}>
+          <NavLink to="/" onClick={onCloseMenu}>Home</NavLink>
+          <NavLink to="/about" onClick={onCloseMenu}>About</NavLink>
+          <NavLink to="/email/inbox" onClick={onCloseMenu}>Mail</NavLink>
+          <NavLink to="/note" onClick={onCloseMenu}>Note</NavLink>
+          <NavLink to="/book" onClick={onCloseMenu}>Book</NavLink>
+        </section>
+        <button class="menu-icone" onClick={onToggleMenu}>☰</button>
       </nav>
       <UserMsg />
     </header>
