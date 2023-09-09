@@ -48,7 +48,7 @@ export function NewEmail({ onClose, onSend, saveDraft, draft }) {
                     <button onClick={onClose}><i className="fa-solid fa-x"></i></button>
                 </span>
             </section>
-            <div className="input-contener">
+            <div className="input-container">
                 <input onChange={handleChange} value={to} type="email" placeholder="To" id="txt" name="to" />
                 <input onChange={handleChange} value={subject} type="text" placeholder="Subject" id="tt" name="subject" />
                 <textarea onChange={handleChange} value={body} name="body"></textarea>
