@@ -1,4 +1,4 @@
-.email-header >*{
+.email-header >*>*{
     margin-inline: 30px;
 }
 
@@ -43,6 +43,7 @@
     border-radius: 20px;
     border: 1px lightgray solid;
     margin-inline: 5px;
+    cursor: pointer;
 }
   .email-header .sort label >* {
     margin-inline: 5px;

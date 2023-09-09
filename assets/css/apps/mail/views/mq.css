@@ -1,3 +1,42 @@
 @media (max-width: 600px) {
-    
+    .email-header >*{
+        margin: 15px;
+    }
+    .email-header {
+        flex-direction: column;
+    }
+
+    .email-filter {
+        position: absolute;
+        left: -100px;
+        z-index: 2;
+    }
+
+    .email-list,
+    .email-data {
+        left: 5px;
+        width: 95%;
+    }
+
+    .email-index .email-filter.open+.email-list,
+    .email-index .email-filter.open+.email-data {
+        left: 5px;
+    }
+
+    .email-filter.open {
+        position: absolute;
+        left: 0px
+    }
+}
+
+@media (max-width: 810px) {
+    .email-header >*{
+        margin: 10px;
+    }
+    .email-header {
+        flex-direction: column;
+    }
+    .email-header .sort label {
+        padding: 5px;
+    }
 }

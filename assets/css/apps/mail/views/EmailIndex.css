@@ -1,7 +1,7 @@
 .email-index {
     position: absolute;
     background-color: var(--email-page-bg-color);
-    height: 90%;
+    height: 80%;
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     overflow-y: hidden;

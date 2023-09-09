@@ -13,7 +13,7 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
         const field = target.name
         let val = target.checked
         setSort(prevSort => {
-            const sort ={ ...prevSort, [field]: val }
+            const sort = { ...prevSort, [field]: val }
             onSort(sort)
             return sort
         })
@@ -22,18 +22,22 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
     const { from, date, unread } = sort
     return (
         <section className="email-header flex align-center">
-            <button onClick={onToggleFilter}><img src="../../assets/icons/hamburger.png" /></button>
-            <div className="logo flex align-center">
-                <Link to={`/email/inbox`} className="logo flex align-center">
-                    <img src="../../assets/icons/gmail.png" />
-                    <span>logo</span>
-                </Link>
-            </div>
+            <section className="flex align-center">
+                <button onClick={onToggleFilter}>
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div className="logo flex align-center">
+                    <Link to={`/email/inbox`} className="logo flex align-center">
+                        <img src="../../assets/icons/gmail.png" />
+                        <span>logo</span>
+                    </Link>
+                </div>
 
-            <label htmlFor="txt" className="search-sec flex align-center">
-                <button><img src="../../assets/icons/search.png" /></button>
-                <input onChange={handleSearch} type="text" placeholder="Search mail" />
-            </label>
+                <label htmlFor="txt" className="search-sec flex align-center">
+                    <button><img src="../../assets/icons/search.png" /></button>
+                    <input onChange={handleSearch} type="text" placeholder="Search mail" />
+                </label>
+            </section>
 
             <section onChange={handleSort} className="sort">
                 <input type="checkbox" name="from" id="fromBox" />
