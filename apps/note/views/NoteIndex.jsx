@@ -8,6 +8,7 @@ export function NoteIndex() {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
   const [isAdd, setIsAdd] = useState(false);
+  const dynClassAddDiv = isAdd ? "display-none" : "";
 
   useEffect(() => {
     getAllNotes();
@@ -15,40 +16,56 @@ export function NoteIndex() {
 
   useEffect(() => {
     getAllNotes();
-    console.log(filterBy);
   }, [filterBy]);
 
-  function getAllNotes() {
-    noteService.query(filterBy).then((res) => {
-      setNotes(res);
-    });
+  async function getAllNotes() {
+    setNotes(await noteService.query(filterBy));
   }
   function onRemoveNote(noteId) {
     noteService
       .remove(noteId)
       .then(() => {
         setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
-        showSuccessMsg(`Book Removed! ${noteId}`);
+        showSuccessMsg(`Note Removed!`);
       })
       .catch((err) => {
         console.log("err:", err);
-        showErrorMsg("Problem Removing " + noteId);
+        showErrorMsg("Problem Removing Note");
       });
   }
+  async function onNotePin(note) {
+    onEditNote(note);
+    await noteService.save(note, true);
+  }
+  function onEditNote(note) {
+    const noteIdx = notes.findIndex((noteItem) => noteItem.id === note.id);
+    setNotes((prevNotes) => [
+      ...prevNotes.slice(0, noteIdx),
+      note,
+      ...prevNotes.slice(noteIdx + 1, prevNotes.length),
+    ]);
+  }
+
   function onSetFilterBy(filterBy) {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
-  function handleNoteAdded() {
-    getAllNotes();
-    // setIsAdd(false);
+  async function handleNoteAdded(note) {
+    setNotes([...notes, note]);
+    setIsAdd(false);
+  }
+  async function onColorPicked(color, note) {
+    const newNote = { ...note, style: { backgroundColor: color } };
+    onEditNote(newNote);
+    await noteService.save(newNote, true);
   }
 
   if (!notes) return <div>Loading...</div>;
   return (
     <div className={"note-index"}>
       <div className={"note-header flex"}>
-        <h1>Appsus Keep</h1>
+        <img src={"assets/icons/icons8-google-keep-48 (1).png"} alt="" />
+        <h1>Keep</h1>
         <div>
           <NoteFilter
             filterBy={filterBy}
@@ -56,33 +73,46 @@ export function NoteIndex() {
           ></NoteFilter>
         </div>
       </div>
-
-      <div
-        className={"note-add flex"}
-        onClick={() => {
-          setIsAdd(true);
-          console.log(isAdd);
-        }}
-      >
-        <p>Add a note</p>
-        <div>
-          <button>
-            <img
-              src={"assets/icons/check_box_FILL0_wght400_GRAD0_opsz24.png"}
-              alt=""
-            />
-          </button>
-          <button>
-            <img
-              src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
-              alt=""
-            />
-          </button>
+      <div className={"flex justify-center note-add-container"}>
+        <div
+          className={`note-add flex ${dynClassAddDiv}`}
+          onClick={() => {
+            setIsAdd(true);
+          }}
+        >
+          <p>Add a note</p>
+          <div>
+            <button className={"note-add-button"}>
+              <img
+                src={"assets/icons/check_box_FILL0_wght400_GRAD0_opsz24.png"}
+                alt=""
+              />
+            </button>
+            <button className={"note-add-button"}>
+              <img
+                src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
+                alt=""
+              />
+            </button>
+          </div>
         </div>
-        {console.log(isAdd)}
-        {isAdd && <NoteAdd onNoteAdded={handleNoteAdded}></NoteAdd>}
+        {isAdd && (
+          <NoteAdd
+            onNoteAdded={async (note) => await handleNoteAdded(note)}
+            isAdd={isAdd}
+            setIsAdd={setIsAdd}
+          ></NoteAdd>
+        )}
       </div>
-      <NoteList notes={notes} onRemoveNote={onRemoveNote}></NoteList>
+
+      <NoteList
+        notes={notes}
+        onRemoveNote={onRemoveNote}
+        onEditNote={onEditNote}
+        onColorPicked={onColorPicked}
+        onNotePin={onNotePin}
+        onNoteDuplicated={async (note) => await handleNoteAdded(note)}
+      ></NoteList>
     </div>
   );
 }

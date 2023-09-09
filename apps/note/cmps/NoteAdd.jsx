@@ -1,7 +1,7 @@
-const { useState, useEffect } = React;
+const { useState } = React;
 import { noteService } from "../services/note.service.js";
-export function NoteAdd({ onNoteAdded }) {
-  const [newNote, SetNewNote] = useState({ title: "", txt: "" });
+export function NoteAdd({ onNoteAdded, isAdd, setIsAdd }) {
+  const [newNote, setNewNote] = useState({ title: "", txt: "" });
   const { title, txt } = newNote;
 
   function handleChange({ target }) {
@@ -22,17 +22,13 @@ export function NoteAdd({ onNoteAdded }) {
         break;
     }
 
-    SetNewNote((prevNewNote) => ({ ...prevNewNote, [field]: value }));
+    setNewNote((prevNewNote) => ({ ...prevNewNote, [field]: value }));
   }
-  function onSaveNote() {
+  async function onSaveNote() {
     const note = noteService.createNote(new Date(), title, txt);
-    SetNewNote(note);
-    console.log(note);
-    noteService
-      .save(note, false)
-      .then(() => onNoteAdded())
-      // .then(() => navigate("/book"))
-      .catch((err) => console.log("err:", err));
+    setNewNote(note);
+    onNoteAdded(note);
+    await noteService.save(note, false);
   }
 
   return (
@@ -43,23 +39,39 @@ export function NoteAdd({ onNoteAdded }) {
           onSaveNote();
         }}
       >
-        <input
-          onChange={handleChange}
-          value={title}
-          placeholder="title"
-          type="text"
-          name="title"
-          id="title"
-        />
-        <input
+        <div className={"flex space-around align-center"}>
+          <input
+            onChange={handleChange}
+            value={title}
+            placeholder="Title"
+            type="text"
+            name="title"
+            id="title"
+          />
+          <span>
+            <button
+              className={"list-button"}
+              onClick={() => {
+                setIsAdd(!isAdd);
+              }}
+            >
+              <img
+                src={"assets/icons/close_FILL0_wght400_GRAD0_opsz24.png"}
+                alt=""
+              />
+            </button>
+          </span>
+        </div>
+
+        <textarea
           onChange={handleChange}
           value={txt}
-          placeholder="note"
+          placeholder="What is on your mind?"
           type="text"
           name="txt"
           id="txt"
         />
-        <button>Save</button>
+        <button className={"words-button"}>Save</button>
       </form>
     </div>
   );

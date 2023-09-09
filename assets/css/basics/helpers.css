@@ -9,7 +9,9 @@
 .justify-center {
   justify-content: center;
 }
-
+.justify-end {
+  justify-content: end;
+}
 .align-center {
   align-items: center;
 }
@@ -30,4 +32,8 @@
   padding: 0;
   margin: 0;
   list-style-type: none;
+}
+
+.overflow-none {
+  overflow: hidden;
 }

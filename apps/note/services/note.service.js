@@ -53,8 +53,8 @@ function save(note, isEdit) {
 function getAll() {
   return storageService.get(NOTE_KEY);
 }
-function getEmptyNote(vendor = "", maxSpeed = "") {
-  return { vendor, maxSpeed };
+function getEmptyNote(title = "", txt = "") {
+  return createNote(new Date(), title, txt);
 }
 
 function getDefaultFilter() {
@@ -98,30 +98,18 @@ function _createNotes() {
   }
 }
 
-function createNote(createdAt, title, txt) {
+function createNote(createdAt, title, txt, backgroundColor = "transparent") {
   return {
     id: utilService.makeId(),
     createdAt,
     type: "NoteTxt",
     isPinned: false,
     style: {
-      backgroundColor: "#ffffff",
+      backgroundColor,
     },
     info: {
       title,
       txt,
     },
   };
-}
-function _setNextPrevnoteId(note) {
-  return storageService.query(NOTE_KEY).then((notes) => {
-    const noteIdx = notes.findIndex((currNote) => currNote.id === note.id);
-    const nextNote = notes[noteIdx + 1] ? notes[noteIdx + 1] : notes[0];
-    const prevNote = notes[noteIdx - 1]
-      ? notes[noteIdx - 1]
-      : notes[notes.length - 1];
-    note.nextNoteId = nextNote.id;
-    note.prevNoteId = prevNote.id;
-    return note;
-  });
 }

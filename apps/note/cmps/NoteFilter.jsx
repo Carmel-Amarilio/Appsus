@@ -47,7 +47,7 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
 
   const { filter } = filterByToEdit;
   return (
-    <section className="search-bar flex space-around  align-center">
+    <section className="search-bar flex  align-center">
       <button>
         <img src={"assets/icons/search.png"} alt="" />
       </button>

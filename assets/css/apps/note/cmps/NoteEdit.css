@@ -1,0 +1,25 @@
+.note-edit {
+  position: fixed;
+  top: 30%;
+  left: 27%;
+  background-color: #fff;
+  width: 41vw;
+  height: 20vh;
+  border: 1px solid var(--gray1);
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  z-index: 2;
+}
+
+.note-edit form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.note-edit button {
+  width: 15%;
+}

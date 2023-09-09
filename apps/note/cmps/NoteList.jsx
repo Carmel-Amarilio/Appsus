@@ -1,48 +1,48 @@
-import { NotePreview } from "./NotePreview.jsx";
-export function NoteList({ notes, onRemoveNote }) {
+import { NoteCard } from "./NoteCard.jsx";
+import { noteService } from "../services/note.service.js";
+
+export function NoteList({
+  notes,
+  onRemoveNote,
+  onEditNote,
+  onColorPicked,
+  onNotePin,
+  onNoteDuplicated,
+}) {
+  function onPinPress(note) {
+    note.isPinned = !note.isPinned;
+    onNotePin(note);
+  }
+
+  async function onDuplicateNote(note) {
+    const newNote = noteService.createNote(
+      new Date(),
+      note.info.title,
+      note.info.txt,
+      note.style.backgroundColor
+    );
+    onNoteDuplicated(newNote);
+    await noteService.save(newNote, false);
+  }
+
   return (
     <ul className="note-list clean-list">
-      {notes.map((note, idx) => {
-        return (
-          <li key={idx} className="note-card">
-            <button>
-              <img
-                src={"assets/icons/push_pin_FILL0_wght400_GRAD0_opsz24.png"}
-                alt="Delete"
-              />
-            </button>
-            <NotePreview note={note}></NotePreview>
-            <section className="list-button-nav flex ">
-              <button>
-                <img
-                  src={"assets/icons/palette_FILL0_wght400_GRAD0_opsz24.png"}
-                  alt="Change background"
-                />
-              </button>
-              <button>
-                <img
-                  src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
-                  alt="Add photo"
-                />
-              </button>
-              <button>
-                <img
-                  src={
-                    "assets/icons/edit_square_FILL0_wght400_GRAD0_opsz24.png"
-                  }
-                  alt="Delete"
-                />
-              </button>
-              <button onClick={() => onRemoveNote(note.id)}>
-                <img src={"assets/icons/delete.png"} alt="Delete" />
-              </button>
-              <button>
-                <img src={"assets/icons/mail.png"} alt="Delete" />
-              </button>
-            </section>
-          </li>
-        );
-      })}
+      <NoteCard
+        notes={notes.filter((note) => note.isPinned)}
+        onColorPicked={onColorPicked}
+        onRemoveNote={onRemoveNote}
+        onEditNote={onEditNote}
+        onPinPress={onPinPress}
+        onDuplicateNote={async (note) => await onDuplicateNote(note)}
+      ></NoteCard>
+      <NoteCard
+        notes={notes.filter((note) => !note.isPinned)}
+        onColorPicked={onColorPicked}
+        onRemoveNote={onRemoveNote}
+        onEditNote={onEditNote}
+        onPinPress={onPinPress}
+        onDuplicateNote={async (note) => await onDuplicateNote(note)}
+      ></NoteCard>
     </ul>
   );
 }

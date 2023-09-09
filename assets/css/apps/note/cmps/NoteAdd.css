@@ -1,38 +1,67 @@
+.note-add-container {
+  padding-block-start: 2em;
+  padding-inline: 1em;
+  padding-block-end: 1em;
+}
+
 .note-add {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 40vw;
   color: var(--gray2);
-  border: 1px solid var(--gray1);
-  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  padding-inline-start: 1em;
 }
 
-.note-add button {
+.note-add-button {
   padding: 10px;
   background-color: #fff;
   border: 0;
   border-radius: 50%;
 }
-.note-add button:hover {
+.note-add-button:hover {
   background-color: var(--mail-bg-color-hover);
   cursor: pointer;
 }
-.note-add button img {
+.note-add-button img {
   width: 1rem;
 }
 
 .note-add-popup {
-  border: 1px solid var(--gray1);
-  border-radius: 5px;
+  background-color: #fff;
+  width: 40vw;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  padding: 10px;
+}
+
+.note-add-popup form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: flex-end;
-  /* text-align: center; */
-  padding: 20px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  gap: 20px;
+}
+
+.note-add-popup input {
+  width: 90%;
+  height: 2em;
+}
+
+.note-add-popup input:focus {
+  border: 0;
+}
+.note-add-popup textarea {
+  width: 90%;
+  height: 4em;
+}
+
+.note-add input::placeholder {
+  color: var(--gray4);
 }

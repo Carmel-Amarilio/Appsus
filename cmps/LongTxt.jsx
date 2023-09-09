@@ -18,10 +18,10 @@ export function LongTxt({ txt, length = 100, showMore = true }) {
   return (
     <div>
       {getTxtToShow()}
-      {txt.length > length && (
-       (showMore && <button className={"show-more"} onClick={handleClick}>
+      {txt.length > length && showMore && (
+        <button className={"words-button"} onClick={handleClick}>
           {!isShowMore ? "Show More" : "Show Less"}
-        </button>)
+        </button>
       )}
     </div>
   );
