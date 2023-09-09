@@ -1,10 +1,13 @@
 import { utilService } from '../../../services/util.service.js'
 import { emailService } from '../services/email.service.js'
+import { noteService } from '../../note/services/note.service.js'
 import { EmailHeader } from '../cmps/EmailHeader.jsx'
 import { EmailsFilter } from '../cmps/EmailsFilter.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
 import { NewEmail } from '../cmps/NewEmail.jsx'
 import { EmailData } from "../views/EmailData.jsx"
+
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 const { useParams } = ReactRouterDOM
@@ -57,7 +60,7 @@ export function EmailIndex() {
         })
 
     }
-    function onSort(sort){
+    function onSort(sort) {
         setSort(sort)
     }
 
@@ -93,6 +96,7 @@ export function EmailIndex() {
         emailService.save(email).then(() => {
             updateEmails
             emailService.remove(draftId).then(updateEmails)
+            showSuccessMsg('Email sent')
         })
         onToggleNewEmail()
     }
@@ -136,14 +140,32 @@ export function EmailIndex() {
         setSearchBy(search)
     }
 
+    function onShareToNote(email){
+        const { subject, body} = email
+        const note = {
+            // id: utilService.makeId(),
+            createdAt: utilService.getCurrDate(),
+            type: "NoteTxt",
+            isPinned: false,
+            style: {
+              backgroundColor: "transparent"
+            },
+            info: {
+              title: subject,
+              txt: body,
+            },
+          }
+          noteService.save(note,false)
+          showSuccessMsg('Save ass a note')
+    }
 
     return (
         <section className="email-index">
-            <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} onSort={onSort}/>
+            <EmailHeader onToggleFilter={onToggleFilter} onSearch={onSearch} onSort={onSort} />
             <div className="flex">
                 <EmailsFilter onNewEmail={onToggleNewEmail} filterBy={filterBy} isOpen={isFilterOpen} emailsMap={emailsMap} />
-                {!params.emailId && <EmailList emails={emails} onStar={onStar} onRemove={onRemove} onToggleRead={onToggleRead} onDraft={onDraft} isDisplayTo={(filterBy === 'send' || filterBy === 'draft' ? true : false)} />}
-                {params.emailId && <EmailData onStar={onStar} onRemove={onRemove} />}
+                {!params.emailId && <EmailList emails={emails} onStar={onStar} onShare={onShareToNote} onRemove={onRemove} onToggleRead={onToggleRead} onDraft={onDraft} isDisplayTo={(filterBy === 'send' || filterBy === 'draft' ? true : false)} />}
+                {params.emailId && <EmailData onShare={onShareToNote} onStar={onStar} onRemove={onRemove} />}
 
             </div>
             {isNewEmail && <NewEmail onClose={onToggleNewEmail} onSend={onSend} saveDraft={saveDraft} draft={currDraft} />}

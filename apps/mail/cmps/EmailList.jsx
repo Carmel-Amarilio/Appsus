@@ -5,7 +5,7 @@ const { useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
 
-export function EmailList({ emails, onStar, onRemove, onToggleRead, onDraft, isDisplayTo }) {
+export function EmailList({ emails, onStar, onShare, onRemove, onToggleRead, onDraft, isDisplayTo }) {
     const navigate = useNavigate()
     const [bodeSize, setBodeSize] = useState(null)
 
@@ -51,6 +51,9 @@ export function EmailList({ emails, onStar, onRemove, onToggleRead, onDraft, isD
                                 {utilService.convertDate(sentAt)}
                             </td>
                             <td className="tool-tr flex ">
+                                <button className="share-btn" onClick={(e) => { e.stopPropagation(); onShare(email) }}>
+                                    <i className="fa-regular fa-note-sticky"></i>
+                                </button>
                                 <button className="read-btn" onClick={(e) => { e.stopPropagation(); onToggleRead(email) }}>
                                     {!isRead && <i className="fa-regular fa-envelope-open"></i>}
                                     {isRead && <i className="fa-regular fa-envelope"></i>}

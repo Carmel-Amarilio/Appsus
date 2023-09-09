@@ -50,6 +50,7 @@
 }
 
 .email-list .star-btn,
+.email-list .share-btn,
 .email-list .read-btn,
 .email-list .delete-btn {
     padding: 10px;
@@ -60,6 +61,7 @@
 }
 
 .email-list .star-btn:hover,
+.email-list .share-btn:hover,
 .email-list .read-btn:hover,
 .email-list .delete-btn:hover {
     background-color: var(--mail-bg-color-hover);
@@ -84,6 +86,6 @@
     top: 4px;
     background-color: white;
     border: 0;
-    transition: 100ms;
+    transition: 200ms;
 }
 

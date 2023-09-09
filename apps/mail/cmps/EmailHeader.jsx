@@ -24,7 +24,7 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
         <section className="email-header flex align-center">
             <section className="flex align-center">
                 <button onClick={onToggleFilter}>
-                    <i class="fa-solid fa-bars"></i>
+                    <i className="fa-solid fa-bars"></i>
                 </button>
                 <section className="logo flex align-center">
                     <Link to={`/email/inbox`} className="logo flex align-center">
