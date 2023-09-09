@@ -40,7 +40,6 @@ export function BookAdd({ onBookAdded }) {
   function onSaveBook() {
     const book = bookService.createBook(title, amount);
     setNewBook(book);
-    console.log(book);
     bookService
       .save(book, false)
       .then(() => onBookAdded())

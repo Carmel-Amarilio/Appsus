@@ -83,7 +83,6 @@ function save(book, isEdit) {
   if (isEdit) {
     return storageService.put(BOOK_KEY, book);
   } else {
-    console.log("saved");
     return storageService.post(BOOK_KEY, book);
   }
 }

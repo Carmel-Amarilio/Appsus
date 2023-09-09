@@ -29,7 +29,6 @@ export function EmailIndex() {
         const { email: userAddress } = emailService.getUser()
         setFilterBy(params.filter);
         emailService.query(searchBy).then(emails => {
-            console.log(emails);
             const unReadCount = emails.filter(email => !email.isRead && email.from !== userAddress && !email.removedAt && !email.isDraft).length
             const draftCount = emails.filter(email => email.isDraft && !email.removedAt).length
             setEmailsMap({ unReadCount, draftCount })
@@ -92,7 +91,6 @@ export function EmailIndex() {
             from,
             to
         }
-        console.log(draftId);
         emailService.save(email).then(() => {
             updateEmails
             emailService.remove(draftId).then(updateEmails)

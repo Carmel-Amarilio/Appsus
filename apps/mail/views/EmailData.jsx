@@ -24,7 +24,7 @@ export function EmailData({ onShare, onStar, onRemove }) {
     }
 
     if (!email) return <div className="list-msg">loading...</div>
-    const { from, body, subject, isStar } = email
+    const { from, to, body, subject, isStar } = email
     return (
         <section className="email-data">
 
@@ -47,6 +47,7 @@ export function EmailData({ onShare, onStar, onRemove }) {
             <section className="email-text">
                 <h1>{subject}</h1>
                 <h3>{from}</h3>
+                {from === emailService.getUser().email && <h3>to: {to}</h3>}
                 <textarea disabled defaultValue={body}></textarea>
             </section>
 

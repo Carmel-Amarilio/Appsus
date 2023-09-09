@@ -69,12 +69,3 @@ export function EmailList({ emails, onStar, onShare, onRemove, onToggleRead, onD
         </section >
     )
 }
-
-// id: '',
-// subject: '',
-// body: '',
-// isRead: false,
-// sentAt: null,
-// removedAt: null,
-// from: '',
-// to: ''
