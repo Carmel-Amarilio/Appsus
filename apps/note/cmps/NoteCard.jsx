@@ -20,13 +20,13 @@ export function NoteCard({
         className="note-card"
         style={{ backgroundColor: note.style.backgroundColor }}
       >
-        <button
-          className={"list-button"}
-          style={{ backgroundColor: note.isPinned ? "black" : "transparent" }}
-          onClick={() => onPinPress(note)}
-        >
+        <button className={"list-button"} onClick={() => onPinPress(note)}>
           <img
-            src={"assets/icons/push_pin_FILL0_wght400_GRAD0_opsz24.png"}
+            src={
+              note.isPinned
+                ? "assets/icons/push_pin_FILL1_wght400_GRAD0_opsz24.svg"
+                : "assets/icons/push_pin_FILL0_wght400_GRAD0_opsz24.png"
+            }
             alt="Pin to start"
           />
         </button>

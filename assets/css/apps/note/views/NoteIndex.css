@@ -17,6 +17,7 @@
 .note-header h1 {
   margin-inline-end: 30px;
   color: var(--gray4);
+  font-weight: 300;
 }
 
 .note-header img {

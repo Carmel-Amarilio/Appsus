@@ -10,7 +10,8 @@
 /* @import './basics/layout.css'; */
 
 /* Views */
-@import "./views/home.css";
+@import "./views/Home.css";
+@import "./views/About.css";
 
 /* note */
 @import "./apps/note/cmps/NoteCard.css";
