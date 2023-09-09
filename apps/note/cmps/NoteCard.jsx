@@ -71,7 +71,9 @@ export function NoteCard({
           >
             <img src={"assets/icons/delete.png"} alt="Delete" />
           </button>
-          <button className={"list-button"}>
+          <button
+            className={"list-button"}
+            onClick={() => onSendEmail(note.info)}>
             <img src={"assets/icons/mail.png"} alt="Send as mail" />
           </button>
         </section>
