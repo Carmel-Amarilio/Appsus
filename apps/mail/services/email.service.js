@@ -98,7 +98,7 @@ function _createEmail(name = utilService.getRandName()) {
     email.id = utilService.makeId()
     email.subject = utilService.makeLorem(3)
     email.body = utilService.makeLorem(10)
-    email.sentAt = utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1"))
+    email.sentAt = utilService.getRandomDate(new Date("2023-01-01"), new Date("2023-9-1"))
     email.from = `${name}@appsus.com`
     email.to = loggedInUser.email
     console.log(utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")));

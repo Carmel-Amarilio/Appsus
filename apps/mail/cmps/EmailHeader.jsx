@@ -2,7 +2,7 @@ const { Link } = ReactRouterDOM
 
 const { useState } = React
 export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
-    const [sort, setSort] = useState({ from: false, data: false, unread: false })
+    const [sort, setSort] = useState({ from: false, date: false, unread: false })
 
     function handleSearch({ target }) {
         let val = target.value
@@ -19,7 +19,7 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
         })
     }
 
-    const { from, data, unread } = sort
+    const { from, date, unread } = sort
     return (
         <section className="email-header flex align-center">
             <button onClick={onToggleFilter}><img src="../../assets/icons/hamburger.png" /></button>
@@ -43,11 +43,11 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
                     <span>From</span>
                 </label>
 
-                <input type="checkbox" name="data" id="dataBox" />
-                <label htmlFor="dataBox" >
-                    {data && <i className="fa-solid fa-caret-up"></i>}
-                    {!data && <i className="fa-solid fa-caret-down"></i>}
-                    <span>Data</span>
+                <input type="checkbox" name="date" id="dateBox" />
+                <label htmlFor="dateBox" >
+                    {date && <i className="fa-solid fa-caret-up"></i>}
+                    {!date && <i className="fa-solid fa-caret-down"></i>}
+                    <span>Date</span>
                 </label>
 
                 <input type="checkbox" name="unread" id="unreadBox" />

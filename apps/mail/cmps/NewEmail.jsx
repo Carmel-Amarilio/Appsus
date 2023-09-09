@@ -49,7 +49,7 @@ export function NewEmail({ onClose, onSend, saveDraft, draft }) {
                 </span>
             </section>
             <div className="input-contener">
-                <input onChange={handleChange} value={to} type="text" placeholder="To" id="txt" name="to" />
+                <input onChange={handleChange} value={to} type="email" placeholder="To" id="txt" name="to" />
                 <input onChange={handleChange} value={subject} type="text" placeholder="Subject" id="tt" name="subject" />
                 <textarea onChange={handleChange} value={body} name="body"></textarea>
             </div>

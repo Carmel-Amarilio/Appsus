@@ -13,7 +13,7 @@ export function EmailIndex() {
     const [emails, setEmails] = useState(null)
     const [emailsMap, setEmailsMap] = useState({ unReadCount: null, draftCount: null })
     const [filterBy, setFilterBy] = useState('inbox')
-    const [sort, setSort] = useState({ from: false, data: false, unread: false })
+    const [sort, setSort] = useState({ from: false, date: false, unread: false })
     const [searchBy, setSearchBy] = useState('')
     const [isNewEmail, setIsNewEmail] = useState(false)
     const [isFilterOpen, setIsFilterOpen] = useState(false)
@@ -51,7 +51,7 @@ export function EmailIndex() {
                     break
             }
             if (sort.from) emails = emails.sort((e1, e2) => e1.from.localeCompare(e2.from))
-            if (sort.data) emails = emails.sort((e1, e2) => e1.body.localeCompare(e2.body))
+            if (sort.date) emails = emails.sort((e1, e2) => new Date(e1.sentAt) - new Date(e2.sentAt))
             if (sort.unread) emails = emails.sort((e1, e2) => e1.isRead === e2.isRead ? 0 : e1.isRead ? 1 : -1)
             setEmails(emails)
         })
