@@ -76,18 +76,14 @@ function _createNotes() {
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "Haiku",
-        `old pond\n
-        frog leaps in\n
-        water's sound\n`
+        `old pond frog leaps in water's sound`
       )
     );
     notes.push(
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "shopping list:",
-        `milk\n
-        bread\n
-        jam\n`
+        `milk bread jam`
       )
     );
 
@@ -95,10 +91,7 @@ function _createNotes() {
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
         "names for the new puppy",
-        `roku \n
-        rexy\n
-        boof\n
-        `
+        `roku rexy boof`
       )
     );
     utilService.saveToStorage(NOTE_KEY, notes);
