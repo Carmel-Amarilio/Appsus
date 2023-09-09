@@ -3,7 +3,7 @@ import { UserMsg } from "./UserMsg.jsx";
 
 export function AppHeader() {
   return (
-    <header className="app-header flex align-center">
+    <header className="app-header flex justify-start align-center">
       <Link to="/">
         <div className={"logo"}>
           <img src="assets/icons/horse (2).png" alt="" />

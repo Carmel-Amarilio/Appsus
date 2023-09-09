@@ -1,6 +1,5 @@
 .app-header {
   display: flex;
-  justify-content: center;
   align-items: center;
   padding-inline: 20px;
   background: white;
@@ -17,6 +16,9 @@
 header .logo img {
   width: 6em;
   height: 6em;
+}
+nav {
+  padding-inline-start: 150px;
 }
 
 nav a {
