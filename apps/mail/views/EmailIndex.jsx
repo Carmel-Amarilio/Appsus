@@ -73,6 +73,7 @@ export function EmailIndex() {
     function onToggleNewEmail() {
         setCurrDraft({})
         setIsNewEmail(!isNewEmail)
+        updateEmails()
     }
 
     function onSend(newEmail, draftId) {

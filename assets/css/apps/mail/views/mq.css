@@ -27,6 +27,17 @@
         position: absolute;
         left: 0px
     }
+
+    .new-email {
+        height: 450px;
+        width: 300px;
+    }
+
+    .new-email.minimize{
+        bottom: -400px;
+        height: 450px;
+        width: 300px;
+    }
 }
 
 @media (max-width: 810px) {
@@ -38,5 +49,8 @@
     }
     .email-header .sort label {
         padding: 5px;
+    }
+    .email-header >*>*{
+        margin-inline: 0px;
     }
 }

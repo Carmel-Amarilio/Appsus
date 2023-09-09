@@ -12,7 +12,8 @@
 
 .email-header .logo{
     cursor: pointer;
-    height: 30px;
+    margin-inline: 5px;
+    /* height: 30px; */
 }
 
 .search-sec{

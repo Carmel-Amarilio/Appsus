@@ -26,12 +26,12 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
                 <button onClick={onToggleFilter}>
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <div className="logo flex align-center">
+                <section className="logo flex align-center">
                     <Link to={`/email/inbox`} className="logo flex align-center">
                         <img src="../../assets/icons/gmail.png" />
-                        <span>logo</span>
+                        <span>ilesus</span>
                     </Link>
-                </div>
+                </section>
 
                 <label htmlFor="txt" className="search-sec flex align-center">
                     <button><img src="../../assets/icons/search.png" /></button>
