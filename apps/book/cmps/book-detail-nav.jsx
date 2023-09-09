@@ -23,7 +23,7 @@ export function BookDetailsNav({ bookId }) {
       <div>
         <Link to={`/book/${prevBookId}`}>Previous</Link>
       </div>
-      <div>
+      <div className={"details-nav-button"}>
         <Link to={`/book/${nextBookId}`}>Next</Link>
       </div>
     </div>

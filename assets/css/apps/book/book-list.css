@@ -1,9 +1,9 @@
 .book-list {
-  padding: 15px 0 0;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
+  padding-inline: 24px;
 }
 
 .book-card {
@@ -14,7 +14,11 @@
   text-align: center;
   padding: 20px;
   background-color: white;
-  /* border-block-end: 3px solid #a5a869; */
+  height: max-content;
+  width: 100%;
+}
+.book-card h2 {
+  font-size: 20px;
 }
 .book-img {
   width: 200px;

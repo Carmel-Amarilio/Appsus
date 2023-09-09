@@ -1,5 +1,9 @@
 import { utilService } from "../../../services/util.service.js";
 import { bookService } from "../services/book.service.js";
+import {
+  showSuccessMsg,
+  showErrorMsg,
+} from "../../../services/event-bus.service.js";
 import { LongTxt } from "../../../cmps/LongTxt.jsx";
 import { AddReview } from "../cmps/review/book-review.jsx";
 import { ReviewList } from "../cmps/review/review-list.jsx";
@@ -81,8 +85,6 @@ export function BookDetails() {
     bookService
       .deleteReview(bookId, reviewId)
       .then((savedBook) => {
-        // console.log({savedBook});
-        // setBook({...savedBook})
         setBook(savedBook);
         showSuccessMsg("Review deleted successfully");
       })
@@ -114,7 +116,11 @@ export function BookDetails() {
         </div>
         <button onClick={() => setIsReview(!isReview)}>Rate book</button>
         {isReview && <AddReview onAddReview={onAddReview} />}
-        <ReviewList reviews={book.reviews} onDeleteReview={onDeleteReview} />
+        <ReviewList
+          reviews={book.reviews}
+          onDeleteReview={onDeleteReview}
+          bookId={book.id}
+        />
         <button onClick={onBack}>Back</button>
       </section>
     </div>

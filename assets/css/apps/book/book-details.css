@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  padding-inline: 24px;
 }
 .book-details h1 {
   color: var(--clr1);

@@ -1,4 +1,4 @@
-export function ReviewPreview({ review, onDeleteReview }) {
+export function ReviewPreview({ review, onDeleteReview, bookId }) {
   function renderStars(rating) {
     const starIcons = [];
     for (let i = 0; i < rating; i++) {
@@ -19,7 +19,7 @@ export function ReviewPreview({ review, onDeleteReview }) {
       <li>Full name: {fullname}</li>
       <li>Rating: {renderStars(rating)}</li>
       <li>Read At: {readAt}</li>
-      <button onClick={() => onDeleteReview(id)}>Delete</button>
+      <button onClick={() => onDeleteReview(id, bookId)}>Delete</button>
     </article>
   );
 }

@@ -1,20 +1,23 @@
-.book-page *{
-    box-sizing: border-box;
-    font-family: "Edu VIC WA NT Beginner", cursive;
+.book-page * {
+  box-sizing: border-box;
+  font-family: "Edu VIC WA NT Beginner", cursive;
 }
 
+.book-page {
+  padding-inline: 24px;
+}
 .book-page button {
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    border: 1px solid var(--gray2);
-    margin: 0.5em;
-    padding: 0.5em 0.8em;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 1px solid var(--gray2);
+  margin: 0.5em;
+  padding: 0.5em 0.8em;
 }
 
 .book-page button:hover {
-    color: #a5a869;
-    transition: 0.3s;
+  color: #a5a869;
+  transition: 0.3s;
 }
 
 .book-page h1,
@@ -25,4 +28,8 @@
 .book-page h6 {
   margin: 0.5em 0 0.5em;
   /* font-family: "Neucha", monospace; */
+}
+
+.book-page input {
+  border: 1px solid #e0e0e0;
 }
