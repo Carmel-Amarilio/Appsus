@@ -22,18 +22,18 @@ export function NoteCard({
         className="note-card"
         style={{ backgroundColor: note.style.backgroundColor }}
       >
-        <button className={"list-button"} onClick={() => onPinPress(note)}>
-          <img
-            src={
-              note.isPinned
-                ? "assets/icons/push_pin_FILL1_wght400_GRAD0_opsz24.svg"
-                : "assets/icons/push_pin_FILL0_wght400_GRAD0_opsz24.png"
-            }
-            alt="Pin to start"
-          />
-        </button>
         <NotePreview note={note}></NotePreview>
         <section className="list-button-nav flex ">
+          <button className={"list-button"} onClick={() => onPinPress(note)}>
+            <img
+              src={
+                note.isPinned
+                  ? "assets/icons/push_pin_FILL1_wght400_GRAD0_opsz24.svg"
+                  : "assets/icons/push_pin_FILL0_wght400_GRAD0_opsz24.png"
+              }
+              alt="Pin to start"
+            />
+          </button>
           <button
             className={"list-button"}
             onClick={() =>
@@ -70,9 +70,6 @@ export function NoteCard({
             onClick={() => onRemoveNote(note.id)}
           >
             <img src={"assets/icons/delete.png"} alt="Delete" />
-          </button>
-          <button className={"list-button"}>
-            <img src={"assets/icons/mail.png"} alt="Send as mail" />
           </button>
         </section>
         {noteEditOpened === idx && (

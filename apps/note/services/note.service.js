@@ -68,30 +68,37 @@ function _createNotes() {
     notes.push(
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "My password-********",
-        utilService.makeLorem(150)
+        "gmail password",
+        "PinkHippo123"
       )
     );
     notes.push(
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "es un EMBOLA",
-        utilService.makeLorem(150)
+        "Haiku",
+        `old pond\n
+        frog leaps in\n
+        water's sound\n`
       )
     );
     notes.push(
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "shopping list:milk,bread,jam",
-        utilService.makeLorem(150)
+        "shopping list:",
+        `milk\n
+        bread\n
+        jam\n`
       )
     );
 
     notes.push(
       createNote(
         utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")),
-        "Ad Matay",
-        utilService.makeLorem(150)
+        "names for the new puppy",
+        `roku \n
+        rexy\n
+        boof\n
+        `
       )
     );
     utilService.saveToStorage(NOTE_KEY, notes);

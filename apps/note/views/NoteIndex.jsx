@@ -83,16 +83,7 @@ export function NoteIndex() {
           <p>Add a note</p>
           <div>
             <button className={"note-add-button"}>
-              <img
-                src={"assets/icons/check_box_FILL0_wght400_GRAD0_opsz24.png"}
-                alt=""
-              />
-            </button>
-            <button className={"note-add-button"}>
-              <img
-                src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
-                alt=""
-              />
+              <img src={"assets/icons/pen.png"} alt="" />
             </button>
           </div>
         </div>

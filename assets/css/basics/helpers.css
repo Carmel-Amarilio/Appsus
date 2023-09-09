@@ -12,6 +12,9 @@
 .justify-end {
   justify-content: end;
 }
+.justify-start {
+  justify-content: start;
+}
 .align-center {
   align-items: center;
 }
