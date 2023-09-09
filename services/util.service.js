@@ -9,7 +9,9 @@ export const utilService = {
   getRandomDate,
   loadFromStorage,
   saveToStorage,
-  getCurrDate
+  getCurrDate,
+  getRandName,
+  convertDate
 };
 function saveToStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val));
@@ -41,11 +43,9 @@ function makeLorem(size = 100) {
     "tuned",
     "to",
     "a dead channel",
-    ".",
     "All",
     "this happened",
     "more or less",
-    ".",
     "I",
     "had",
     "the story",
@@ -59,7 +59,6 @@ function makeLorem(size = 100) {
     "it",
     "was",
     "a different story",
-    ".",
     "It",
     "was",
     "a pleasure",
@@ -72,6 +71,28 @@ function makeLorem(size = 100) {
     txt += words[Math.floor(Math.random() * words.length)] + " ";
   }
   return txt;
+}
+
+function getRandName() {
+  const firstNames = [
+    "Emma",
+    "Liam",
+    "Olivia",
+    "Noah",
+    "Ava",
+    "Isabella",
+    "Sophia",
+    "Mia",
+    "Charlotte",
+    "Amelia",
+    "Alexander",
+    "Benjamin",
+    "Jackson",
+    "Samuel",
+    "Daniel",
+    "Matthew"
+  ]
+  return firstNames[Math.floor(Math.random() * firstNames.length)];
 }
 
 function getRandomIntInclusive(min, max) {
@@ -122,11 +143,24 @@ function getRandomDate(startDate, endDate) {
   const randomDate = new Date(startDate.getTime() + randomTime);
   return randomDate.toISOString().slice(0, 10);
 }
-function getCurrDate(){
+function getCurrDate() {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
-const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
-const day = String(currentDate.getDate()).padStart(2, '0');
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
+}
+
+function convertDate(date) {
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ]
+  const dateObject = new Date(date)
+  const month = monthNames[dateObject.getMonth()]
+  const day = dateObject.getDate()
+
+  return `${month} ${day}`
+
 }

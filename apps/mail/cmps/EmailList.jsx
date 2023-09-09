@@ -1,7 +1,9 @@
+import { LongTxt } from "../../../cmps/LongTxt.jsx";
+import { utilService } from '../../../services/util.service.js'
+
 const { useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
-import { LongTxt } from "../../../cmps/LongTxt.jsx";
 
 export function EmailList({ emails, onStar, onRemove, onToggleRead, onDraft, isDisplayTo }) {
     const navigate = useNavigate()
@@ -45,14 +47,15 @@ export function EmailList({ emails, onStar, onRemove, onToggleRead, onDraft, isD
                             <td>
                                 {body && <LongTxt txt={body} length={bodeSize} showMore={false}></LongTxt>}
                             </td>
-                            <td>{sentAt}</td>
+                            <td>
+                                {utilService.convertDate(sentAt)}
+                            </td>
                             <td className="tool-tr flex ">
                                 <button className="read-btn" onClick={(e) => { e.stopPropagation(); onToggleRead(email) }}>
                                     {!isRead && <i className="fa-regular fa-envelope-open"></i>}
-                                    {isRead &&<i className="fa-regular fa-envelope"></i>}
+                                    {isRead && <i className="fa-regular fa-envelope"></i>}
                                 </button>
                                 <button className="delete-btn" onClick={(e) => { e.stopPropagation(); onRemove(email) }}>
-                                    {/* <img src="../../assets/icons/delete.png" /> */}
                                     <i className="fa-solid fa-trash-can"></i>
                                 </button>
                             </td>

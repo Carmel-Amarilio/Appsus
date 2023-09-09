@@ -3,7 +3,7 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 const emails_KEY = 'emailsDB'
 const loggedInUser = {
-    email: 'user@appsus.com',
+    email: 'user123@appsus.com',
     fullname: 'Mahatma Appsus'
 }
 _createEmails()
@@ -93,13 +93,15 @@ function _createEmails() {
     }
 }
 
-function _createEmail(address = utilService.makeLorem(1)) {
+function _createEmail(name = utilService.getRandName()) {
     const email = getEmptyEmail()
     email.id = utilService.makeId()
     email.subject = utilService.makeLorem(3)
     email.body = utilService.makeLorem(10)
     email.sentAt = utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1"))
-    email.from = `${address}@appsus.com`
-    email.to = `${utilService.makeLorem(1)}@appsus.com`
+    email.from = `${name}@appsus.com`
+    email.to = loggedInUser.email
+    console.log(utilService.getRandomDate(new Date("2022-01-01"), new Date("2023-9-1")));
     return email
+
 }

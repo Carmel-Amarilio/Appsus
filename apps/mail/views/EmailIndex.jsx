@@ -26,6 +26,7 @@ export function EmailIndex() {
         const { email: userAddress } = emailService.getUser()
         setFilterBy(params.filter);
         emailService.query(searchBy).then(emails => {
+            console.log(emails);
             const unReadCount = emails.filter(email => !email.isRead && email.from !== userAddress && !email.removedAt && !email.isDraft).length
             const draftCount = emails.filter(email => email.isDraft && !email.removedAt).length
             setEmailsMap({ unReadCount, draftCount })
@@ -49,7 +50,6 @@ export function EmailIndex() {
                 default:
                     break
             }
-            console.log(sort);
             if (sort.from) emails = emails.sort((e1, e2) => e1.from.localeCompare(e2.from))
             if (sort.data) emails = emails.sort((e1, e2) => e1.body.localeCompare(e2.body))
             if (sort.unread) emails = emails.sort((e1, e2) => e1.isRead === e2.isRead ? 0 : e1.isRead ? 1 : -1)
@@ -75,7 +75,7 @@ export function EmailIndex() {
         setIsNewEmail(!isNewEmail)
     }
 
-    function onSend(newEmail) {
+    function onSend(newEmail, draftId) {
         const { email: from } = emailService.getUser()
         const { subject, body, to } = newEmail
         const email = {
@@ -88,7 +88,11 @@ export function EmailIndex() {
             from,
             to
         }
-        emailService.save(email).then(updateEmails)
+        console.log(draftId);
+        emailService.save(email).then(() => {
+            updateEmails
+            emailService.remove(draftId).then(updateEmails)
+        })
         onToggleNewEmail()
     }
 

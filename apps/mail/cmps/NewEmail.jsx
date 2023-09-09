@@ -6,10 +6,12 @@ export function NewEmail({ onClose, onSend, saveDraft, draft }) {
     const [newEmail, setNewEmail] = useState({ subject: draft.subject||'', body: draft.body||'', to: draft.to||'' })
     const [isMinimize, setIsMinimize] = useState(false)
     const [isFullScreen, setIsFullScreen] = useState(false)
+    const [draftId, setDraftId] = useState(null)
     const intervalIdDraft = useRef()
 
     useEffect(() => {
         const draftId = draft.id ? draft.id : utilService.makeId()
+        setDraftId(draftId)
         intervalIdDraft.current = setInterval(() => {
             setNewEmail(prev => {
                 saveDraft(prev, draftId)
@@ -52,7 +54,7 @@ export function NewEmail({ onClose, onSend, saveDraft, draft }) {
                 <textarea onChange={handleChange} value={body} name="body"></textarea>
             </div>
             <section className="footer">
-                <button onClick={() => onSend(newEmail)}>Send</button>
+                <button onClick={() => onSend(newEmail, draftId)}>Send</button>
             </section>
         </section>
     )
