@@ -19,4 +19,17 @@
   --color-picker-pink: rgb(250, 175, 167);
   --color-picker-blue: rgb(174, 204, 220);
   --color-picker-yellow: rgb(255, 248, 184);
+
+  /* book */
+  --clr1: rgb(96, 107, 91);
+  --clr2: #a296c0;
+
+  --clr1bg: rgb(153, 166, 149);
+  --clr1bg-light: rgb(205, 221, 200);
+  --clr2bg: #d9d3ea;
+  --clr2bg-light: #bbafda;
+
+  --gray1: rgb(240, 240, 240);
+  --gray2: rgb(155, 155, 155);
+  --gray3: rgb(44, 44, 44);
 }

@@ -1,0 +1,7 @@
+.book-details-nav {
+  width: 100%;
+  padding-block: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -11,7 +11,13 @@ export const utilService = {
   saveToStorage,
   getCurrDate,
   getRandName,
-  convertDate
+  convertDate,
+  getRandomYear,
+  getRandomPageCount,
+  getOneOfTheTwo,
+  getRandomAmount,
+  getRandomAuthor,
+  getCurrencySymbol,
 };
 function saveToStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val));
@@ -163,4 +169,33 @@ function convertDate(date) {
 
   return `${month} ${day}`
 
+}
+
+function getRandomYear() {
+  return getRandomIntInclusive(1900, 2023);
+}
+function getRandomPageCount() {
+  return getRandomIntInclusive(80, 700);
+}
+function getRandomAmount() {
+  return getRandomIntInclusive(80, 200);
+}
+
+function getOneOfTheTwo(option1, option2) {
+  return Math.random() < 0.5 ? option1 : option2;
+}
+
+function getRandomAuthor(authors) {
+  return authors[getRandomIntInclusive(1, 7)];
+}
+
+function getCurrencySymbol(currencyCode) {
+  switch (currencyCode) {
+    case "EUR":
+      return "€";
+    case "ILS":
+      return "₪";
+    case "USD":
+      return "$";
+  }
 }

@@ -1,7 +1,7 @@
 /* Setup */
 
 @import "./setup/variables.css";
-/* @import './setup/fonts.css'; */
+@import "setup/typography.css";
 
 /* Basics */
 
@@ -22,7 +22,7 @@
 @import "./apps/note/cmps/NotePreview.css";
 @import "./apps/note/views/NoteIndex.css";
 
-/* mail imports*/
+/* mail */
 @import "./apps/mail/views/EmailIndex.css";
 @import "./apps/mail/views/EmailData.css";
 @import "./apps/mail/cmps/EmailHeader.css";
@@ -30,8 +30,17 @@
 @import "./apps/mail/cmps/EmailList.css";
 @import "./apps/mail/cmps/NewEmail.css";
 
-
 @import "./apps/mail/views/mq.css";
+
+/* book */
+@import "./apps/book/BookIndex.css";
+@import "./apps/book/user-msg.css";
+@import "./apps/book/book-list.css";
+@import "./apps/book/book-details.css";
+@import "./apps/book/star-rating.css";
+@import "./apps/book/book-details-nav.css";
+@import "./apps/book/add-book-google.css";
+
 
 /* Cmps */
 
