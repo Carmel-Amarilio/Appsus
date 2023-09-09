@@ -29,7 +29,7 @@ export function AppHeader() {
           <NavLink to="/note" onClick={onCloseMenu}>Note</NavLink>
           <NavLink to="/book" onClick={onCloseMenu}>Book</NavLink>
         </section>
-        <button class="menu-icone" onClick={onToggleMenu}>☰</button>
+        <button className="menu-icone" onClick={onToggleMenu}>☰</button>
       </nav>
       <UserMsg />
     </header>
