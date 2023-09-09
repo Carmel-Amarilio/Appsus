@@ -10,7 +10,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-.logo img {
+header .logo img {
   width: 6em;
   height: 6em;
 }

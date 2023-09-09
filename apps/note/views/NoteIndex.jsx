@@ -4,7 +4,6 @@ import { NoteList } from "../cmps/NoteList.jsx";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { NoteFilter } from "../cmps/NoteFilter.jsx";
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
-import { ColorPicker } from "../cmps/ColorPicker.jsx";
 export function NoteIndex() {
   const [notes, setNotes] = useState([]);
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
@@ -20,25 +19,23 @@ export function NoteIndex() {
   }, [filterBy]);
 
   async function getAllNotes() {
-    await noteService.query(filterBy).then((res) => {
-      setNotes(res);
-    });
+    setNotes(await noteService.query(filterBy));
   }
   function onRemoveNote(noteId) {
     noteService
       .remove(noteId)
       .then(() => {
         setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
-        showSuccessMsg(`Book Removed! ${noteId}`);
+        showSuccessMsg(`Note Removed!`);
       })
       .catch((err) => {
         console.log("err:", err);
-        showErrorMsg("Problem Removing " + noteId);
+        showErrorMsg("Problem Removing Note");
       });
   }
   async function onNotePin(note) {
-    await noteService.save(note, true);
     onEditNote(note);
+    await noteService.save(note, true);
   }
   function onEditNote(note) {
     const noteIdx = notes.findIndex((noteItem) => noteItem.id === note.id);
@@ -53,8 +50,8 @@ export function NoteIndex() {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
-  function handleNoteAdded() {
-    getAllNotes();
+  async function handleNoteAdded(note) {
+    setNotes([...notes, note]);
     setIsAdd(false);
   }
   async function onColorPicked(color, note) {
@@ -101,7 +98,7 @@ export function NoteIndex() {
         </div>
         {isAdd && (
           <NoteAdd
-            onNoteAdded={handleNoteAdded}
+            onNoteAdded={async (note) => await handleNoteAdded(note)}
             isAdd={isAdd}
             setIsAdd={setIsAdd}
           ></NoteAdd>
@@ -114,6 +111,7 @@ export function NoteIndex() {
         onEditNote={onEditNote}
         onColorPicked={onColorPicked}
         onNotePin={onNotePin}
+        onNoteDuplicated={async (note) => await handleNoteAdded(note)}
       ></NoteList>
     </div>
   );

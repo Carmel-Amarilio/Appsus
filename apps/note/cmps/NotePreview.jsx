@@ -1,3 +1,4 @@
+const { useEffect, useState } = React;
 import { LongTxt } from "../../../cmps/LongTxt.jsx";
 
 export function NotePreview({ note }) {

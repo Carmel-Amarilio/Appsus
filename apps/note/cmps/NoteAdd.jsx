@@ -24,14 +24,11 @@ export function NoteAdd({ onNoteAdded, isAdd, setIsAdd }) {
 
     setNewNote((prevNewNote) => ({ ...prevNewNote, [field]: value }));
   }
-  function onSaveNote() {
+  async function onSaveNote() {
     const note = noteService.createNote(new Date(), title, txt);
     setNewNote(note);
-    console.log(note);
-    noteService
-      .save(note, false)
-      .then(() => onNoteAdded())
-      .catch((err) => console.log("err:", err));
+    onNoteAdded(note);
+    await noteService.save(note, false);
   }
 
   return (

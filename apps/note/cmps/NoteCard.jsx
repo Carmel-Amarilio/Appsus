@@ -1,4 +1,4 @@
-const { useState, useEffect, Fragment } = React;
+const { useState, Fragment } = React;
 import { NotePreview } from "./NotePreview.jsx";
 import { NoteEdit } from "./NoteEdit.jsx";
 import { Backdrop } from "./Backdrop.jsx";
@@ -10,9 +10,11 @@ export function NoteCard({
   onRemoveNote,
   onEditNote,
   onPinPress,
+  onDuplicateNote,
 }) {
   const [noteEditOpened, setNoteEditOpened] = useState(null);
   const [colorPickerOpen, setColorPickerOpen] = useState(null);
+
   return notes.map((note, idx) => {
     return (
       <li
@@ -43,10 +45,13 @@ export function NoteCard({
               alt="Change background"
             />
           </button>
-          <button className={"list-button"}>
+          <button
+            className={"list-button"}
+            onClick={() => onDuplicateNote(note)}
+          >
             <img
-              src={"assets/icons/image_FILL0_wght400_GRAD0_opsz24.png"}
-              alt="Add photo"
+              src={"assets/icons/file_copy_FILL0_wght400_GRAD0_opsz24.png"}
+              alt="Duplicate note"
             />
           </button>
           <button

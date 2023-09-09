@@ -98,14 +98,14 @@ function _createNotes() {
   }
 }
 
-function createNote(createdAt, title, txt) {
+function createNote(createdAt, title, txt, backgroundColor = "transparent") {
   return {
     id: utilService.makeId(),
     createdAt,
     type: "NoteTxt",
     isPinned: false,
     style: {
-      backgroundColor: "#ffffff",
+      backgroundColor,
     },
     info: {
       title,

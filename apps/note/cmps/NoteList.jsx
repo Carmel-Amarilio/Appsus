@@ -1,5 +1,5 @@
-const { useEffect, useState } = React;
 import { NoteCard } from "./NoteCard.jsx";
+import { noteService } from "../services/note.service.js";
 
 export function NoteList({
   notes,
@@ -7,18 +7,22 @@ export function NoteList({
   onEditNote,
   onColorPicked,
   onNotePin,
+  onNoteDuplicated,
 }) {
-  // const [pinnedNotes, setPinnedNotes] = useState([]);
-  // const [unPinnedNotes, setUnPinnedNotes] = useState([]);
-
-  // useEffect(() => {
-  //   setUnPinnedNotes(notes.filter((note) => !note.isPinned));
-  //   setPinnedNotes(notes.filter((note) => note.isPinned));
-  // }, []);
-
   function onPinPress(note) {
     note.isPinned = !note.isPinned;
     onNotePin(note);
+  }
+
+  async function onDuplicateNote(note) {
+    const newNote = noteService.createNote(
+      new Date(),
+      note.info.title,
+      note.info.txt,
+      note.style.backgroundColor
+    );
+    onNoteDuplicated(newNote);
+    await noteService.save(newNote, false);
   }
 
   return (
@@ -29,6 +33,7 @@ export function NoteList({
         onRemoveNote={onRemoveNote}
         onEditNote={onEditNote}
         onPinPress={onPinPress}
+        onDuplicateNote={async (note) => await onDuplicateNote(note)}
       ></NoteCard>
       <NoteCard
         notes={notes.filter((note) => !note.isPinned)}
@@ -36,6 +41,7 @@ export function NoteList({
         onRemoveNote={onRemoveNote}
         onEditNote={onEditNote}
         onPinPress={onPinPress}
+        onDuplicateNote={async (note) => await onDuplicateNote(note)}
       ></NoteCard>
     </ul>
   );
