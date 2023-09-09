@@ -39,7 +39,7 @@ export function NoteEdit({ noteId, onNoteEdit, onNoteEdited }) {
   function onSaveNote(note) {
     noteService
       .save(note, true)
-      .then((newNote) => onNoteEdit(newNote))
+      .then(() => onNoteEdit(note))
       .then(() => {
         onNoteEdited();
       })

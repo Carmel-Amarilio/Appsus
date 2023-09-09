@@ -1,6 +1,7 @@
 .note-preview {
   text-wrap: wrap;
   overflow-wrap: anywhere;
+  width: 100%;
 }
 
 .note-preview h3 {

@@ -24,8 +24,10 @@ export function UserMsg() {
 
   if (!msg) return <span></span>;
   return (
-    <section className={`user-msg ${msg.type}`}>
-      <button onClick={closeMsg}>
+    <section
+      className={`user-msg ${msg.type} flex justify-center align-center`}
+    >
+      <button className={"list-button"} onClick={closeMsg}>
         <img src="assets/icons/close_FILL0_wght400_GRAD0_opsz24.png" alt="" />
       </button>
       {msg.txt}
