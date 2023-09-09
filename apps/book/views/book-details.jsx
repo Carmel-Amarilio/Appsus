@@ -81,7 +81,7 @@ export function BookDetails() {
         showErrorMsg("Error saving review");
       });
   }
-  function onDeleteReview(reviewId) {
+  function onDeleteReview(reviewId, bookId) {
     bookService
       .deleteReview(bookId, reviewId)
       .then((savedBook) => {
