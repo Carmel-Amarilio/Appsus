@@ -5,7 +5,7 @@ export function EmailsFilter({ onNewEmail, filterBy, isOpen, emailsMap }) {
     return (
         <section className={"email-filter flex column " + (isOpen && 'open')}>
             <button onClick={onNewEmail} className="new-email-icn flex align-center">
-                <img src="../../assets/icons/pen.png" />
+                <img src={"assets/icons/pen.png"} />
                 <span className="text">Compose</span>
             </button>
             <button className={` ${filterBy === 'inbox' ? 'select' : ''} ${unReadCount > 0 ? 'sow-dot' : ''}`}>
