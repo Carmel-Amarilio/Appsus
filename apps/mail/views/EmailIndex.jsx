@@ -154,7 +154,7 @@ export function EmailIndex() {
             },
           }
           noteService.save(note,false)
-          showSuccessMsg('Save ass a note')
+          showSuccessMsg('Save as a note')
     }
 
     return (

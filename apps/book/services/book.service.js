@@ -135,7 +135,7 @@ async function _createBooks() {
           "placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum platea vehicula conubia fermentum habitasse congue suspendisse",
         pageCount: 713,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -157,7 +157,7 @@ async function _createBooks() {
           "aliquam pretium lorem laoreet etiam odio cubilia iaculis placerat aliquam tempor nisl auctor",
         pageCount: 129,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -179,7 +179,7 @@ async function _createBooks() {
           "lorem molestie ut euismod ad quis mi ultricies nisl cursus suspendisse dui tempor sit suscipit metus etiam euismod tortor sagittis habitant",
         pageCount: 972,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -202,7 +202,7 @@ async function _createBooks() {
           "interdum inceptos mauris habitant primis neque tempus lacus morbi auctor cras consectetur euismod vehicula neque netus enim vivamus augue molestie imperdiet tincidunt aliquam",
         pageCount: 303,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -224,7 +224,7 @@ async function _createBooks() {
           "et vehicula faucibus amet accumsan lectus cras nulla cubilia arcu neque litora mi habitasse quis amet augue facilisis sed",
         pageCount: 337,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -247,7 +247,7 @@ async function _createBooks() {
           "senectus habitant nam imperdiet nostra elit dapibus nisl adipiscing in",
         pageCount: 748,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs/${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -270,7 +270,7 @@ async function _createBooks() {
           "nec scelerisque id cursus platea sit ullamcorper bibendum ultrices tempus ante mi aliquet cras tortor dapibus dictum scelerisque",
         pageCount: 65,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -292,7 +292,7 @@ async function _createBooks() {
           "magna quisque venenatis laoreet purus in semper habitant proin pellentesque sed egestas cursus faucibus nam enim id sit mi ligula risus curabitur senectus curabitur sodales fames sem",
         pageCount: 299,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -315,7 +315,7 @@ async function _createBooks() {
           "porttitor nisl sodales id eu tellus venenatis laoreet auctor dictumst nulla",
         pageCount: 803,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -338,7 +338,7 @@ async function _createBooks() {
           "curabitur bibendum in dolor neque magna phasellus arcu nulla cubilia senectus maecenas ullamcorper neque accumsan facilisis dictumst ornare",
         pageCount: 891,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -360,7 +360,7 @@ async function _createBooks() {
           "auctor amet nostra luctus molestie proin platea cubilia netus sed purus egestas a primis eu tristique interdum litora lorem venenatis mattis senectus",
         pageCount: 86,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -382,7 +382,7 @@ async function _createBooks() {
           "aenean mauris porta netus accumsan turpis etiam vestibulum vivamus sagittis nullam nec tellus quam mattis est pellentesque nisi litora sit ad",
         pageCount: 882,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -404,7 +404,7 @@ async function _createBooks() {
           "nec faucibus arcu suspendisse tempus potenti lobortis aliquam quisque augue integer consectetur etiam ultrices curabitur tristique metus",
         pageCount: 598,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -426,7 +426,7 @@ async function _createBooks() {
           "etiam nec aliquam euismod platea vel laoreet quisque condimentum sapien neque ut aliquam torquent in nam",
         pageCount: 608,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -448,7 +448,7 @@ async function _createBooks() {
           "etiam pretium urna fusce lobortis curae viverra aptent metus semper nisi litora feugiat elementum purus nunc consequat lorem ultricies non primis phasellus sociosqu donec dolor",
         pageCount: 583,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -471,7 +471,7 @@ async function _createBooks() {
           "dolor morbi malesuada eleifend purus taciti sit interdum aliquet commodo ut libero tincidunt",
         pageCount: 497,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -494,7 +494,7 @@ async function _createBooks() {
           "rhoncus odio netus consectetur aenean hendrerit massa scelerisque elementum aptent lobortis pharetra maecenas quam nulla volutpat turpis non habitasse aenean ante sodales lobortis quisque libero imperdiet gravida eleifend nulla",
         pageCount: 804,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -516,7 +516,7 @@ async function _createBooks() {
           "himenaeos quis iaculis orci libero egestas quam varius primis erat lacus facilisis blandit dictum tristique interdum litora quisque purus senectus pretium purus",
         pageCount: 231,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -539,7 +539,7 @@ async function _createBooks() {
           "torquent in et id lacus vivamus aptent cursus erat integer venenatis risus ac ante quam etiam euismod feugiat risus suscipit rhoncus pharetra quisque felis",
         pageCount: 652,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -562,7 +562,7 @@ async function _createBooks() {
           "aliquet euismod mi vivamus bibendum donec etiam quisque iaculis ullamcorper est sed",
         pageCount: 904,
         categories: ["Computers", "Hack"],
-        thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(
+        thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(
           1,
           19
         )}.jpeg`,
@@ -592,7 +592,7 @@ function createBook(title, amount) {
     description: utilService.makeLorem(),
     pageCount: utilService.getRandomPageCount(),
     categories: ["Classic"],
-    thumbnail: `../../assets/book-imgs/${utilService.getRandomIntInclusive(1, 19)}.jpeg`,
+    thumbnail: `assets/book-imgs${utilService.getRandomIntInclusive(1, 19)}.jpeg`,
     language: utilService.getOneOfTheTwo("en", "span"),
     reviews: [],
     listPrice: {

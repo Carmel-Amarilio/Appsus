@@ -28,13 +28,13 @@ export function EmailHeader({ onToggleFilter, onSearch, onSort }) {
                 </button>
                 <section className="logo flex align-center">
                     <Link to={`/email/inbox`} className="logo flex align-center">
-                        <img src="../../assets/icons/gmail.png" />
+                        <img src={"assets/icons/gmail.png"} />
                         <span>ilesus</span>
                     </Link>
                 </section>
 
                 <label htmlFor="txt" className="search-sec flex align-center">
-                    <button><img src="../../assets/icons/search.png" /></button>
+                    <button><img src={"assets/icons/search.png"} /></button>
                     <input onChange={handleSearch} type="text" placeholder="Search mail" />
                 </label>
             </section>
